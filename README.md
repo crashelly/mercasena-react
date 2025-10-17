@@ -1,16 +1,53 @@
-# React + Vite
+# 🛒 Mercasena
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Mercasena** es una aplicación web de **tienda virtual e inventario para punto de venta (POS)** desarrollada para la **Granja del SENA – Centro para la Formación Cafetera (Manizales, Caldas)**.  
+Su propósito es optimizar la gestión de ventas, productos e inventario, y servir como herramienta práctica para el aprendizaje en entornos productivos reales.
 
-Currently, two official plugins are available:
+🌐 [Visitar sitio oficial](https://zensoftwares.website/mercasena/V1/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## 🎯 Objetivo del proyecto
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+- Facilitar el proceso de comercialización de productos agropecuarios de la Granja SENA.  
+- Implementar un sistema moderno, escalable y educativo basado en tecnologías web.  
+- Integrar tienda virtual y punto de venta físico en una única plataforma de gestión.  
+- Brindar una experiencia práctica para aprendices del programa **Análisis y Desarrollo de Software (ADSO)**.
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🧩 Características principales
+
+### 🏪 Tienda virtual
+- Listado de productos con imágenes, precios y descripción.
+- Filtrado por categorías.
+- Carrito de compras e historial de pedidos.
+- Interfaz amigable y adaptable (responsive).
+
+### 📦 Inventario y punto de venta (POS)
+- Registro, edición y eliminación de productos.
+- Control de stock en tiempo real.
+- Gestión de ventas con registro de tickets.
+- Control de clientes y proveedores.
+- Módulo de reportes (ventas, stock, utilidades, etc.).
+
+### 👥 Usuarios y roles
+- Autenticación segura.
+- Roles con permisos diferenciados (Administrador, Cajero, Cliente).
+- Gestión de cuentas y accesos.
+
+---
+
+## 🏗️ Tecnologías utilizadas
+
+| Categoría | Tecnologías |
+|------------|--------------|
+| **Frontend** | HTML5, CSS3, JavaScript, ReactJS, Redux Toolkit |
+| **Backend** | PHP (Laravel o Core PHP), API REST |
+| **Base de datos** | MySQL |
+| **Servidor** | Apache / Nginx |
+| **Herramientas** | Git, Node.js, npm, Vite |
+| **Diseño responsivo** | Bootstrap / TailwindCSS |
+
+---
+
