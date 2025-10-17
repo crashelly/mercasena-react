@@ -399,11 +399,6 @@
             </div>
         </dialog>
 
-        <script>
-
-        </script>
-
-
         {/* <!-- modal del peticiondeCorreo poara recuperar la contraseña  --> */}
         <dialog id="emailForRecover" className="modal">
             <div className="modal-box">

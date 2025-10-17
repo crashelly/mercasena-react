@@ -1,12 +1,24 @@
-import {Header} from "../components/shop/header"
+import { Navbar } from "@components/shop/navbar"
+import { ComercialBanner, ProductCategories, Products } from "@features/shop/products/"
 
 
 const Shop = () => {
- return ( 
-    <div>
-        <Header/>
-    </div>
- )
+    return (
+        <div>
+            <Navbar />
+
+
+            {/* Contenido de la aplicacion  banner, categorias  y productos*/}
+            <ComercialBanner />
+
+            {/* categorias de los productos */}
+            <ProductCategories />
+
+            <Products />
+            {/* todos los productos por cartas  */}
+            {/* <Body/> */}
+        </div>
+    )
 }
 
 export default Shop
