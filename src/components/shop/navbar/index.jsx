@@ -1,5 +1,7 @@
 import Logo from "@components/assets/Logo";
 import { SearchBar } from "./components/SearchBar";
+import { UserSection } from "./components/UserSection";
+
 
 export const Navbar = () => {
     return (
@@ -9,6 +11,9 @@ export const Navbar = () => {
                     <Logo />
 
                     <SearchBar />
+                    <UserSection />
+                    
+
 
                 </div>
             </nav>

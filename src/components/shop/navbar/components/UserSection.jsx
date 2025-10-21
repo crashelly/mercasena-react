@@ -1,8 +1,11 @@
+import { ShoppingCartIcon } from "./ShoppingCarIcon";
+
+
 export const UserSection = () => {
     return (
         <>
-        {/* //  <!-- Iconos de navegación --> */}
-        {/* icono de la persona */}
+            {/* //  <!-- Iconos de navegación --> */}
+            {/* icono de la persona */}
             <div className="order-3 md:order-4 flex items-center justify-end md:space-x-4" id="nav-content">
                 <a className="inline-block no-underline hover:text-black md:hidden" href="#">
                     <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#56B847">
@@ -18,16 +21,18 @@ export const UserSection = () => {
                     </svg>
                 </a>
 
-
+{/* $('#loginModal').removeclassName('hidden') */}
                 {/* informacion sobre el usuario en este caso para iniciar sesion */}
-                <a id="loginTrigger" popovertarget="popover-1" onclick="$('#loginModal').removeclassName('hidden')"
+                <a id="loginTrigger" popoverTarget="popover-1" onClick={()=>console.log(funcionando)}
                     className="  md:inline-block no-underline hover:text-black color-sena-texto" href="#">
                     Iniciar Sesión / Registro
                 </a>
 
-{/* borde que separa de los botones */}
+                {/* borde que separa de los botones */}
                 <div className="border-l-2 hidden  md:block  border-green-500 h-6"></div>
 
+                {/*========================== icono del carrito de compras=================================== */}
+                <ShoppingCartIcon />
             </div>
 
         </>
