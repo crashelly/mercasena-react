@@ -1,78 +1,97 @@
-import { useEffect, useState, useLayoutEffect } from "react";
-import { CONFIG } from "@config/app"
-
+import { useEffect, useState } from "react";
+import { CONFIG } from "@config/app";
+import { useKeenSlider } from "keen-slider/react"
+import "keen-slider/keen-slider.min.css"
 
 const ComercialBanner = () => {
-    const [banner, setBanner] = useState([])
-    useEffect(() => {
-        fetch(CONFIG.API.URL.endpoints.bannerImages.get())
-            .then(res => res.json())
-            .then(res => setBanner(res))
-            // .then(activateBanner())
-    }, [])
-
-    // para cuando termina de renderiza 
-    // useLayoutEffect(() => {
-    //     activateBanner()
-    // }, [])
-    return (
-        <div id="bannerCarousele" className="owl-carousel owl-theme">
-            {banner.images.forEach(imageUrl => {
-                return (
-
-                    <div class="w-screen h-48 imagenes-contenedor  bg-gray-500  overflow-hidden">
-                        <img class="w-full h-full  object-cover  md:object-fit " src={image} alt="imagen" />
-                    </div>
-                );
-                console.log(imageUrl)
-            })}
-            {
-                array.forEach(element => {
-                    
-                    console.log(banner.images)
+    const [banner, setBanner] = useState({ images: [] });
+    const [isLoading, setLoading] = useState(true);
+    const [details, setDetails] = React.useState(null)
+    const [sliderRef] = useKeenSlider(
+        {
+            loop: true,
+            detailsChanged(s) {
+                setDetails(s.track.details)
+            },
+            initial: 2,
+        },
+        [
+            (slider) => {
+                let timeout
+                let mouseOver = false
+                function clearNextTimeout() {
+                    clearTimeout(timeout)
+                }
+                function nextTimeout() {
+                    clearTimeout(timeout)
+                    if (mouseOver) return
+                    timeout = setTimeout(() => {
+                        slider.next()
+                    }, 1300)
+                }
+                slider.on("created", () => {
+                    slider.container.addEventListener("mouseover", () => {
+                        mouseOver = true
+                        clearNextTimeout()
+                    })
+                    slider.container.addEventListener("mouseout", () => {
+                        mouseOver = false
+                        nextTimeout()
+                    })
+                    nextTimeout()
                 })
-            }
-        </div>
-    );
-};
-
-const activateBanner = () => {
-
-    $('.owl-carousel').owlCarousel({
-        loop: true,
-        margin: 10,
-        responsiveClass: true,
-        animateOut: 'fadeOut',
-        //default settings:
-        autoplay: true,
-        autoplayTimeout: 5000,
-        autoplayHoverPause: false,
-        responsive: {
-            0: {
-                items: 1,
-                nav: true
+                slider.on("dragStarted", clearNextTimeout)
+                slider.on("animationEnded", nextTimeout)
+                slider.on("updated", nextTimeout)
             },
-            600: {
-                items: 3,
-                nav: false
-            },
-            1000: {
-                items: 1,
-                nav: true,
-                loop: false
-            }
+        ]
+    )
+    useEffect(() => {
+        // Consultar la API
+        fetch(CONFIG.API.URL.endpoints.bannerImages.get())
+            .then((res) => res.json())
+            .then((res) => {
+                setBanner(res);
+                setLoading(false);
+            })
+            .catch((err) => console.error("❌ Error al cargar banners:", err));
+    }, []);
+
+    // Cuando ya hay imágenes, inicializa el carrusel
+    useEffect(() => {
+        if (!isLoading && banner.images && banner.images.length > 0) {
+            console.log("✅ Activando BAnner con imágenes:", banner.images);
+
         }
-    })
+    }, [isLoading, banner]);
+
+    if (isLoading) {
+        return <p>Cargando banners...</p>;
+    }
+
+    return (
+
+        <>
+            <div ref={sliderRef} className="keen-slider">
+                {
+                    banner.images.map((image, index) => (
+
+                        <div className={" keen-slider__slide number-slide" + index} key={index}>
+                            <img
+                                src={image}
+                                alt={`banner-${index}`}
+                                style={{ width: "100%", borderRadius: "10px", maxHeight: "500px" }}
+                            />
+                        </div>
+                    ))
+                }
 
 
-    // Agregar la clase 'hidden' a todos los elementos con la clase 'owl-nav'
-    document.querySelectorAll('.owl-nav').forEach(function (element) {
-        element.classList.add('hidden');
-    });
+            </div>
+        </>
 
-    // Agregar la clase 'hidden' a todos los elementos con la clase 'owl-dots'
-    document.querySelectorAll('.owl-dots').forEach(function (element) {
-        element.classList.add('hidden');
-    });
+
+    );
 }
+
 export default ComercialBanner;
