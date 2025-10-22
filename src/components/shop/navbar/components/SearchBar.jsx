@@ -2,9 +2,9 @@ export const SearchBar = () => {
     return (
         <>
             {/* <!-- Search - Ocultar en móviles --> */}
-            <div className="order-2 md:order-3 hidden md:block w-full md:w-auto mt-4 md:mt-0">
+            <div className="order-2 md:order-3 hidden md:block w-full md:w-auto mt-0 md:mt-0">
                 <div className="w-full max-w-sm min-w-[200px]">
-                    <div className="relative mt-7">
+                    <div className="relative mt-2">
                         <input id="productSearchBar"
                             className="w-full color-sena   placeholder:text-white text-white text-sm border border-slate-200 rounded-full pl-4 pr-28 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
                             placeholder="Busca tus productos..." />
@@ -18,10 +18,10 @@ export const SearchBar = () => {
                             </svg>
                             Buscar
                         </button>
-                        <button className="btn mt-2 h-1 w-1" id="btnOpenPopover" popoverTarget="productsResult" >
+                        {/* <button className="btn mt-2 h-1 w-1" id="btnOpenPopover" popoverTarget="productsResult" >
 
-                        </button>
-                        <div className="dropdown    w-full h-full rounded-box bg-base-100 shadow-sm"  id="productsResult"
+                        </button> */}
+                        {/* <div className="dropdown    w-full h-full rounded-box bg-base-100 shadow-sm"  id="productsResult"
                         >
                             <div className=" px-1 grid grid-cols-4 gap-4  bg-slate-100 " id="resultsforProducxts">
 
@@ -30,7 +30,7 @@ export const SearchBar = () => {
 
                             </div>
 
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>

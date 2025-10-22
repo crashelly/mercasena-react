@@ -57,7 +57,13 @@ const Products = () => {
 
 const ProductCard = ({ imageUrl, id, price, name, subCategory, state, stateID, quantity, stock, measurement }) => {
     console.log("renderizando " + name);
-
+    // condfiguracion de los estaods de los proiductos
+    let productState = '';
+    if (stateID == 6) {
+        productState = <div className="badge badge-warning text-white hover:text-red-400">{state} </div>;
+    } else if(stateID == 5){ 
+        productState = <div class="badge badge-error text-white hover:text-yellow-800 hover:animate-bounce hover:animate-duration-[1400ms] hover:animate-ease-out">{state} </div>;
+    }
 
     return (
         <>
@@ -67,7 +73,12 @@ const ProductCard = ({ imageUrl, id, price, name, subCategory, state, stateID, q
                     {/* <!-- Gray rounded square --> */}
                     <div className="absolute inset-0 m-4 bg-gray-200 rounded-lg flex items-center justify-center">
                         {/* <!-- Product Image (centered within the gray square) --> */}
-                        <img id={`img${id}`} className="w-full h-full object-contain p-2" src={imageUrl} alt={name} />
+                        <img id={`img${id}`}
+                            className={
+                                stateID == 5 
+                                    ? "w-full h-full object-contain p-2 opacity-50 hover:animate-pulse hover:animate-duration-[1400ms] hover:animate-ease-linear"
+                                    : "w-full h-full object-contain p-2"
+                            }   src={imageUrl} alt={name} />
                     </div>
                 </div>
 
@@ -92,22 +103,7 @@ const ProductCard = ({ imageUrl, id, price, name, subCategory, state, stateID, q
                     {/* renderizado condicional del estado del producto */}
                     {/* <!--product state --> */}
                     <div id="productStateContainer">
-                        {
-                            (() => {
-                                // cuando es 6
-                                if (state == 6) {
-                                    return (
-                                        <div className="badge badge-warning text-white hover:text-red-400">{state} </div>
-                                    )
-                                }
-
-                                if (state == 5) {
-                                    return (
-                                        <div class="badge badge-error text-white hover:text-yellow-800">{state} </div>
-                                    )
-                                }
-                            })
-                        }
+                        {productState}
                     </div>
 
                     {/*  FIN DEL RENDERIZADO  */}
@@ -118,7 +114,7 @@ const ProductCard = ({ imageUrl, id, price, name, subCategory, state, stateID, q
                     <button id="botonSD" onClick={() => console.log("user.requestLogin();")} value="(${producto.id})"
                         className={
                             stateID == 5
-                                ? " flex-1  bg-gray-600 hover:bg-gray-700  text-white font-medium py-2 px-4 rounded-lg transition-colors flex items-center justify-center gap-2"
+                                ? " flex-1   bg-gray-600 hover:bg-gray-700  text-white font-medium py-2 px-4 rounded-lg transition-colors flex items-center justify-center gap-2"
                                 : " flex-1 hover:scale-105  transition-colors  hover:bg-green-900 color-sena  text-white font-medium py-2 px-4 rounded-lg transition-colors flex items-center justify-center gap-2"
                         }>
                         Agregar
