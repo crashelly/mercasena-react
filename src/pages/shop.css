@@ -12,6 +12,9 @@
    border-color : #39A900; 
 }
 
+/* .mainContent{
+    background-image: ;
+} */
 body {
     margin: 0;
     padding: 0;
@@ -103,6 +106,7 @@ body {
 
 body{
     background-image:url('../assets/tienda/images/sena.png');
+    background-color: rgb(207, 198, 187);
     background-attachment: fixed;
     background-size: contain;
     z-index: 2;

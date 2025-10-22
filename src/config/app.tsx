@@ -17,6 +17,9 @@ class Config {
                     },
                     categories : {
                         get : () => this.mainUrl + 'Product.php?action=getCategories'
+                    },
+                    whatsapp : {
+                        get : () => this.mainUrl + 'mercasena.php?action=getWhatsappNumber'
                     }
                 }
             }

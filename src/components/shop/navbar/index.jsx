@@ -1,4 +1,4 @@
-import Logo from "@components/assets/Logo";
+import Logo from "@components/Logo";
 import { SearchBar } from "./components/SearchBar";
 import { UserSection } from "./components/UserSection";
 

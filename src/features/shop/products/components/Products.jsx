@@ -62,7 +62,7 @@ const ProductCard = ({ imageUrl, id, price, name, subCategory, state, stateID, q
     if (stateID == 6) {
         productState = <div className="badge badge-warning text-white hover:text-red-400">{state} </div>;
     } else if(stateID == 5){ 
-        productState = <div class="badge badge-error text-white hover:text-yellow-800 hover:animate-bounce hover:animate-duration-[1400ms] hover:animate-ease-out">{state} </div>;
+        productState = <div className="badge badge-error text-white hover:text-yellow-800 hover:animate-bounce hover:animate-duration-[1400ms] hover:animate-ease-out">{state} </div>;
     }
 
     return (

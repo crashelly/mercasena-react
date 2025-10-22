@@ -1,10 +1,11 @@
 import { Navbar } from "@components/shop/navbar"
 import { ComercialBanner, ProductCategories, Products } from "@features/shop/products/"
+import Footer from "@components/footer"
 import "./shop.css"
 
 const Shop = () => {
     return (
-        <div>
+        <div className="mainContent">
             <Navbar />
 
 
@@ -15,6 +16,7 @@ const Shop = () => {
             <ProductCategories />
 
             <Products />
+            <Footer />
             {/* todos los productos por cartas  */}
             {/* <Body/> */}
         </div>
