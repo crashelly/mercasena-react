@@ -2,14 +2,14 @@ export const SearchBar = () => {
     return (
         <>
             {/* <!-- Search - Ocultar en móviles --> */}
-            <div className="order-2 md:order-3 hidden md:block w-full md:w-auto mt-0 md:mt-0">
+            <div className="order-2 mr-28 md:order-3 hidden md:block w-full md:w-auto mt-0 md:mt-3">
                 <div className="w-full max-w-sm min-w-[200px]">
                     <div className="relative mt-2">
                         <input id="productSearchBar"
-                            className="w-full color-sena   placeholder:text-white text-white text-sm border border-slate-200 rounded-full pl-4 pr-28 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
+                            className="w-90 color-sena  hover:boder-4 hover:border-amber-400  placeholder:text-white text-white text-sm border border-slate-200 rounded-full pl-4 pr-10 py-3 px-40transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
                             placeholder="Busca tus productos..." />
                         <button
-                            className=" absolute top-1 right-1 flex items-center rounded-full bg-slate-800 py-1 px-3 border border-transparent text-center text-sm text-white transition-all shadow-sm hover:shadow focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                            className=" hover:animate-wiggle hover:animate-ease-in-out absolute align-self-end align-end mx-0 ml-30 top-1 left-30 flex items-end rounded-full bg-slate-800 py-1 mt-1 px-4 border border-transparent text-center text-sm text-white transition-all shadow-sm hover:shadow focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                             type="button">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#FFFFFFFF" className="w-4 h-4 mr-2">
                                 <path fillRule="evenodd"
@@ -18,19 +18,7 @@ export const SearchBar = () => {
                             </svg>
                             Buscar
                         </button>
-                        {/* <button className="btn mt-2 h-1 w-1" id="btnOpenPopover" popoverTarget="productsResult" >
-
-                        </button> */}
-                        {/* <div className="dropdown    w-full h-full rounded-box bg-base-100 shadow-sm"  id="productsResult"
-                        >
-                            <div className=" px-1 grid grid-cols-4 gap-4  bg-slate-100 " id="resultsforProducxts">
-
-                            </div>
-                            <div className=" px-1  " id="errorBannerContainer">
-
-                            </div>
-
-                        </div> */}
+                       
                     </div>
                 </div>
             </div>

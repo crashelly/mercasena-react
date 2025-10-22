@@ -1,4 +1,4 @@
-import LogoIcon from "@assets/Logos/mercasena_logo.png"
+import Logo from "@components/Logo"
 import githubIcon from "@assets/Logos/github-logo.png"
 import facebookIcon from "@assets/Logos/facebook-logo.png"
 import whatsappIcon from "@assets/Logos/whatsapp-logo.png"
@@ -30,9 +30,10 @@ const Footer = () => {
                 <div className="flex flex-col md:flex-row justify-between items-center">
                     {/* <!-- Logo SENA y MERCASENA alineados a la izquierda --> */}
                     <div className="flex items-center space-x-3 mb-4 md:mb-0">
-                        <img src={LogoIcon} alt="SENA" className="h-10" />
-                        <h2 className="text-xl font-bold color-sena-texto">MERCASENA</h2>
+                        <Logo width={20} height={0} />
+                        {/* <img src={Logo} alt="SENA" className="h-10" /> */}
                     </div>
+                        <h2 className="text-xl text-center mx-auto font-bold color-sena-texto">Centro para la Formaciòn Cafetera</h2>
 
                     {/* <!-- Iconos de redes sociales centrados en móvil, alineados a la derecha en desktop --> */}
                     <div className="flex justify-center md:justify-end w-full md:w-auto">

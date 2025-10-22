@@ -1,15 +1,21 @@
 import { useState, useEffect } from "react"
 import { CONFIG } from "@config/app"
-
+import { addProductsToCache,addAllProducts } from "@slices/Shop/productsSlice";
+import { useSelector,useDispatch } from "react-redux";
 const Products = () => {
-    const [products, setProducts] = useState([])
+    const products = useSelector(state => state.products.cachedProducts)
+    const dispatch = useDispatch()
+
     const [isLoading, setLoading] = useState(true)
+    console.log(products)
     // consultando a la API
     useEffect(() => {
         fetch(CONFIG.API.URL.endpoints.products.getAll())
             .then(res => res.json())
             .then(res => {
-                setProducts(res)
+                dispatch(addAllProducts(res))
+                dispatch(addProductsToCache(res))
+                // setProducts(res)
                 setLoading(false)
             })
     }, [])
@@ -42,6 +48,7 @@ const Products = () => {
                                     state={product.estado ?? "Sin stock"}
                                     stateID={product.estadoID ?? 1}
                                     imageUrl={product.rutaImagen ?? ""}
+                                    
                                 />
                             ))
                             // products.map((product) => {
@@ -56,6 +63,7 @@ const Products = () => {
 }
 
 const ProductCard = ({ imageUrl, id, price, name, subCategory, state, stateID, quantity, stock, measurement }) => {
+   
     console.log("renderizando " + name);
     // condfiguracion de los estaods de los proiductos
     let productState = '';

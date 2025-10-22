@@ -3,13 +3,24 @@
  */
 
 import { useEffect, useState } from "react";
+import { addCategories } from "@slices/Shop/productsSlice";
 import { CONFIG } from "@config/app"
+import { useSelector ,useDispatch} from "react-redux";
 const ProductCategories = () => {
-    const [categories, setCategories] = useState([]);
+    // const [categories, setCategories] = useState([]);
+    // estado global 
+    const categories =  useSelector(state => state.products.categories)
+    const dispatch = useDispatch()
+    // console.log(categories);
+
+
     useEffect(() => {
         fetch(CONFIG.API.URL.endpoints.categories.get())
             .then(res => res.json())
-            .then(res => setCategories(res))
+            .then(res =>{
+                dispatch(addCategories(res))
+            })
+            // setCategories(res)
     }, [])
 
     return (
@@ -21,9 +32,8 @@ const ProductCategories = () => {
                 { 
                     
                     categories.map((category,index) =>{
-                        category.name = category.nombre
                         return (
-                            <Category  key={"0001_cat"+ index} name={category.name}  />
+                            <Category  key={"0001_cat"+ index} name={category.nombre}  />
                         )
                     })
                 }

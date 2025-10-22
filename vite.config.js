@@ -8,12 +8,13 @@ export default defineConfig({
   plugins: [react(),tailwindcss()],
   resolve : {
     alias : {
-      '@components': path.resolve(__dirname, './src/components'),
-      '@features': path.resolve(__dirname, './src/features'),
-      '@shop': path.resolve(__dirname, './src/features/shop'),
-      '@inventary': path.resolve(__dirname, './src/features/inventary'),
-      '@config': path.resolve(__dirname, './src/config'),
-      '@assets': path.resolve(__dirname, './src/assets'),
+      '@components': path.resolve(__dirname, './src/Components'),
+      '@features': path.resolve(__dirname, './src/Features'),
+      '@shop': path.resolve(__dirname, './src/Features/Shop'),
+      '@inventary': path.resolve(__dirname, './src/Features/Inventary'),
+      '@config': path.resolve(__dirname, './src/Config'),
+      '@assets': path.resolve(__dirname, './src/Assets'),
+      '@slices': path.resolve(__dirname, './src/App/Slices'),
     }
   }
 })
