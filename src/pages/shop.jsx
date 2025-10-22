@@ -1,6 +1,6 @@
 import { Navbar } from "@components/shop/navbar"
 import { ComercialBanner, ProductCategories, Products } from "@features/shop/products/"
-
+import "./shop.css"
 
 const Shop = () => {
     return (

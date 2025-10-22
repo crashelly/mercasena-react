@@ -6,7 +6,7 @@ import "keen-slider/keen-slider.min.css"
 const ComercialBanner = () => {
     const [banner, setBanner] = useState({ images: [] });
     const [isLoading, setLoading] = useState(true);
-    const [details, setDetails] = React.useState(null)
+    const [details, setDetails] = useState(null)
     const [sliderRef] = useKeenSlider(
         {
             loop: true,
@@ -60,7 +60,7 @@ const ComercialBanner = () => {
     // Cuando ya hay imágenes, inicializa el carrusel
     useEffect(() => {
         if (!isLoading && banner.images && banner.images.length > 0) {
-            console.log("✅ Activando BAnner con imágenes:", banner.images);
+            
 
         }
     }, [isLoading, banner]);

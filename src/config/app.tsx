@@ -1,6 +1,4 @@
-interface APIConfig {
 
-}
 class Config {
     API: object = {};
     mainUrl: string;
@@ -15,7 +13,7 @@ class Config {
                         get: () => this.mainUrl + 'mercasena.php?action=getBannerImages'
                     },
                     products: {
-                        get: () => this.mainUrl + 'Product.php'
+                        getAll: () => this.mainUrl + 'Product.php?action=getInfoProductsForShop'
                     },
                     categories : {
                         get : () => this.mainUrl + 'Product.php?action=getCategories'
