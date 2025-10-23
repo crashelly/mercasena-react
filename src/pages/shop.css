@@ -12,6 +12,9 @@
    border-color : #39A900; 
 }
 
+#loginImage_from_modal{
+    background-image: url('../../public/assets/images/imglogin.jpeg');
+}
 /* .mainContent{
     background-image: ;
 } */

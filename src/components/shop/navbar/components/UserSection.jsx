@@ -1,9 +1,15 @@
 import { ShoppingCartIcon } from "./ShoppingCarIcon";
-
+import { LoginModal ,RegisterModal} from '@components/modals'
+import { useState } from "react";
 
 export const UserSection = () => {
+    const [showLoginModal, setShowLoginModal] = useState(false);
+
     return (
         <>
+            <LoginModal />
+            <RegisterModal />
+            {/* { showLoginModal ? <RequestLoginModal /> : null } */}
             {/* //  <!-- Iconos de navegación --> */}
             {/* icono de la persona */}
             <div className="order-3 md:order-3 mt-4 flex items-center justify-end md:space-x-4 mr-0" id="nav-content">
@@ -21,9 +27,9 @@ export const UserSection = () => {
                     </svg>
                 </a>
 
-{/* $('#loginModal').removeclassName('hidden') */}
-                {/* informacion sobre el usuario en este caso para iniciar sesion */}
-                <a id="loginTrigger" popoverTarget="popover-1" onClick={()=>console.log(funcionando)}
+                {/* $('#loginModal').removeclassName('hidden') */}
+                <a id="loginTrigger" popoverTarget="popover-1" onClick={() => document.getElementById('LoginModal').showModal()}
+
                     className="hover:underline  md:inline-block no-underline hover:text-black color-sena-texto" href="#">
                     Iniciar Sesión / Registro
                 </a>
