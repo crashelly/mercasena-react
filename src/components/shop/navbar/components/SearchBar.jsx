@@ -2,9 +2,9 @@ export const SearchBar = () => {
     return (
         <>
             {/* <!-- Search - Ocultar en móviles --> */}
-            <div className="order-2 mr-28 md:order-3 hidden md:block w-full md:w-auto mt-0 md:mt-3">
+            <div className="order-2 mr-34 md:order-3 hidden md:block w-full md:w-auto mt-0 md:mt-1">
                 <div className="w-full max-w-sm min-w-[200px]">
-                    <div className="relative mt-2">
+                    <div className="relative mt-1">
                         <input id="productSearchBar"
                             className="w-90 color-sena  hover:boder-4 hover:border-amber-400  placeholder:text-white text-white text-sm border border-slate-200 rounded-full pl-4 pr-10 py-3 px-40transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
                             placeholder="Busca tus productos..." />

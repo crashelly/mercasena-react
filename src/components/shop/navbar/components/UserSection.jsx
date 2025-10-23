@@ -12,7 +12,7 @@ export const UserSection = () => {
             {/* { showLoginModal ? <RequestLoginModal /> : null } */}
             {/* //  <!-- Iconos de navegación --> */}
             {/* icono de la persona */}
-            <div className="order-3 md:order-3 mt-4 flex items-center justify-end md:space-x-4 mr-0" id="nav-content">
+            <div className="order-3 md:order-3 ml-4 mt-0 flex items-center justify-end md:space-x-4 mr-0" id="nav-content">
                 <a className="inline-block no-underline hover:text-black md:hidden " href="#">
                     <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#56B847">
                         <path

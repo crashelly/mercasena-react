@@ -20,11 +20,11 @@ export const RegisterModal = () => {
 
                                     <div className="bg-white px-8 py-10">
                                         <div className="w-full h-48 flex items-center justify-center bg-cover bg-center rounded-3xl overflow-hidden"
-                                            style="background-image: url('assets/images/imglogin.png');">
+                                           >
                                             <div className="text-center text-white">
-                                                <h2 className="text-2xl font-extrabold" style="text-shadow: 4px 4px 6px rgba(0, 0, 0, 0.6);">
+                                                <h2 className="text-2xl font-extrabold" >
                                                 </h2>
-                                                <h2 className="text-2xl font-extrabold" style="text-shadow: 4px 4px 6px rgba(0, 0, 0, 0.6);"> Registrate
+                                                <h2 className="text-2xl font-extrabold"> Registrate
                                                 </h2>
                                             </div>
                                         </div>
@@ -85,9 +85,10 @@ export const RegisterModal = () => {
                                                     placeholder="Repite tu contraseña" />
                                             </div>
 
+{/* $('#registerModal').addclassName('hidden') */}
                                             <div className="flex justify-between items-center mb-8">¿Ya tienes cuenta?
                                                 <a href="#" className="text-sm color-sena-texto hover:underline"
-                                                    onclick="$('#registerModal').addclassName('hidden')">Iniciar sesion</a>
+                                                    >Iniciar sesion</a>
 
                                             </div>
 
@@ -107,3 +108,4 @@ export const RegisterModal = () => {
     )
 }
 
+export default RegisterModal

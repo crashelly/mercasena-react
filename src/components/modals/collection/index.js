@@ -1,1 +1,2 @@
-export {default as RequestLoginModal} from './RequestLoginModal';
+export {default as LoginModal} from './LoginModal';
+export {default as RegisterModal} from './RegisterModal';

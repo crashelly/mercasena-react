@@ -1,7 +1,6 @@
 import { Navbar } from "@components/shop/navbar"
 import { ComercialBanner, ProductCategories, Products } from "@features/shop/products/"
 import Footer from "@components/footer"
-import {RequestLoginModal} from '@components/modals'
 import "./shop.css"
 
 const Shop = () => {
@@ -21,7 +20,7 @@ const Shop = () => {
             {/* todos los productos por cartas  */}
             {/* <Body/> */}
             {/* seccion de todo los modales */}
-            <RequestLoginModal />
+            
         </div>
     )
 }
