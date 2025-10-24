@@ -64,9 +64,9 @@ const Category = ({ name,id,dispatcher}) => {
     }
     return (
         <>
-            <div className="carousel-item mr-4 ml-4">
+            <div className="carousel-item mr-4 ml-4 ">
                 {/* onclikc => web.fetchProductsByCategory(${categoria.id},false)  */}
-                <button onClick={() => searchProductsByCategory(id)} className="bg-white text-green-600 font-bold px-3 py-1 text-sm rounded-full shadow-md border border-green-400 hover:bg-green-100 badge badge-success"> {name}</button>
+                <button onClick={() => searchProductsByCategory(id)} className=" hover:scale-105 hover:cursor-grab  bg-white text-green-600 font-bold px-3 py-1 text-sm rounded-full shadow-md border border-green-400 hover:bg-green-100 badge badge-success"> {name}</button>
             </div>
         </>
     )

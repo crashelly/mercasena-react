@@ -121,24 +121,29 @@ const ProductCard = ({
 
     return (
         <>
-
-            <div className="bg-white  rounded-2xl shadow-md overflow-visible hover:scale-110  transform  duration-300 flex flex-col w-full max-w-xs">
+            <div className="bg-white rounded-2xl shadow-md overflow-hidden hover:scale-110  transform  duration-300 flex flex-col w-full max-w-xs">
                 {/* <!-- Product Image Container --> */}
-                <div className="relative w-full h-48 bg-gray-100 rounded-t-2xl overflow-hidden">
-                    {/* <!-- Gray rounded square --> */}
-                    <div className="absolute inset-0 m-4 bg-gray-200 rounded-lg flex items-center justify-center">
-                        {/* <!-- Product Image (centered within the gray square) --> */}
 
-                        <img id={`img${id}`}
-                            className={
-                                stateID == 5
-                                    ? "w-full h-full z-10   mask-b-from-30% mask-b-to-95% object-contain p-2 opacity-50 hover:animate-pulse hover:animate-duration-[1400ms] hover:animate-ease-linear"
-                                    : "w-full h-full z-10   object-contain p-2"
-                            } src={imageUrl} alt={name} />
+                <div className="relative group cursor-pointer overflow-hidden duration-500 w-64 h-80 bg-zinc-800 text-gray-50 p-5">
+                    <div className>
 
+                        <div className="group-hover:scale-110 w-full h-60 bg-white duration-500" >
+                            <img id={`img${id}`}
+                                className={
+                                    stateID == 5
+                                        ? "w-full h-full z-10   mask-b-from-30% mask-b-to-95% object-contain p-2 opacity-50 hover:animate-pulse hover:animate-duration-[1400ms] hover:animate-ease-linear"
+                                        : "w-full h-full z-10   object-contain p-2"
+                                } src={imageUrl} alt={name} />
+                        </div>
+                        <div className="absolute w-56 left-0 p-5 -bottom-60 duration-500 group-hover:-translate-y-6">
+                            {/* <div className="absolute -z-10 left-0 w-full h-28 opacity-0 duration-500 group-hover:opacity-90 group-hover:bg-blue-900" /> */}
+                            {/* <span className="text-xl font-bold">Hover me!</span> */}
+                            <p className="group-hover:opacity-100 w-auto duration-500 opacity-30">
+                                pura desde el origen. Proviene de vacas criadas en pastos frescos, sin aditivos, químicos ni conservantes. Conserva su sabor auténtico y nutrientes naturales. Fresca, nutritiva y sostenible, llega del campo directo a tu mesa. Redescubre la leche real: natural, honesta y llena de vida.
+
+                            </p>
+                        </div>
                     </div>
-
-
                 </div>
 
                 {/* <!-- Product Info --> */}
@@ -146,7 +151,6 @@ const ProductCard = ({
                     <div className="flex justify-between items-start">
                         {/* <!-- Price -->  ${web.addPuntuaction(producto.precio)}   */}
                         <span className="text-lg font-bold text-red-500">$ {price} </span>
-                        <button className="btn btn-success w-20 h-7 text-md text-white hover:btn-primary hover:duration-300 whitespace-nowrap inline-flex rounded-lg ">Mas Info</button>
                     </div>
                     {/* <!-- Red horizontal line --> */}
                     <div className="border-t border-red-500 my-2"></div>
@@ -172,12 +176,12 @@ const ProductCard = ({
                     <button id="botonSD" onClick={() => console.log("user.requestLogin();")} value="(${producto.id})"
                         className={
                             stateID == 5
-                                ? " flex-1  cursor-not-allowed bg-gray-600 hover:bg-gray-700  text-white font-medium py-2 px-4 rounded-lg transition-colors flex items-center justify-center gap-2"
-                                : " flex-1  hover:scale-105  transition-colors  hover:bg-green-900 color-sena  text-white font-medium py-2 px-4 rounded-lg  flex items-center justify-center gap-2"
+                                ? " flex-1   bg-gray-600 hover:bg-gray-700  text-white font-medium py-2 px-4 rounded-lg transition-colors flex items-center justify-center gap-2"
+                                : " flex-1 hover:scale-105  transition-colors  hover:bg-green-900 color-sena  text-white font-medium py-2 px-4 rounded-lg  flex items-center justify-center gap-2"
                         }>
                         Agregar
                         <div width="40px">
-                            <svg className="rounded-lg hover:animate-slide-right-reset" xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#ffffff">
+                            <svg className="hover:animate-fade-right hover:animate-ease-in hover:animate-alternate   bg-green-500 rounded-lg hover:animate-slide-right-reset" xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#ffffff">
                                 <path d="M280-80q-33 0-56.5-23.5T200-160q0-33 23.5-56.5T280-240q33 0 56.5 23.5T360-160q0 33-23.5 56.5T280-80Zm400 0q-33 0-56.5-23.5T600-160q0-33 23.5-56.5T680-240q33 0 56.5 23.5T760-160q0 33-23.5 56.5T680-80ZM246-720l96 200h280l110-200H246Zm-38-80h590q23 0 35 20.5t1 41.5L692-482q-11 20-29.5 31T622-440H324l-44 80h480v80H280q-45 0-68-39.5t-2-78.5l54-98-144-304H40v-80h130l38 80Zm134 280h280-280Z" />
                             </svg>
                         </div>
@@ -185,8 +189,6 @@ const ProductCard = ({
                     </button>
                 </div>
             </div >
-
-
         </>
 
     )
