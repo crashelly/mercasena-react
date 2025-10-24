@@ -1,5 +1,5 @@
 const ProductsFinder = () => {
-    reuturn(
+    return(
         <>
             <div>
                 <button onclick="user.requestLogin();"

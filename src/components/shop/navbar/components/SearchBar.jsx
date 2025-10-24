@@ -1,4 +1,6 @@
 export const SearchBar = () => {
+
+    
     return (
         <>
             {/* <!-- Search - Ocultar en móviles --> */}

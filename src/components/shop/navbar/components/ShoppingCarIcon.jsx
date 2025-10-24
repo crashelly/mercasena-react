@@ -5,7 +5,7 @@ export const ShoppingCartIcon = () => {
             <div>
                 {/* onclick user.requestLogin(); */}
                 <button onClick={()=>console.log("e")}
-                    className="py-0 px-1 relative border-2 border-transparent text-gray-800 rounded-full hover:text-gray-400 focus:outline-none focus:text-gray-500 transition duration-150 ease-in-out"
+                    className="py-0 px-1 mr-8 relative border-2 border-transparent text-gray-800 rounded-full hover:text-gray-400 focus:outline-none focus:text-gray-500 transition duration-150 ease-in-out"
                     aria-label="Cart">
                     <svg className="h-6 w-6" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
                         viewBox="0 0 24 24" stroke="#35a751">

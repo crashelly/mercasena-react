@@ -57,7 +57,7 @@ const LoginModal = () => {
 
                                     <div className="flex justify-between items-center mb-8">
                                         {/*$('#registerModal').removeclassName('hidden')  */}
-                                        <a href="#" className="text-sm color-sena-texto  hover:underline"
+                                        <a href="#" onClick={()=>document.getElementById('registerModal').showModal()} className="text-sm color-sena-texto  hover:underline"
                                             >Registrate</a>
                                         <a href="#" className="text-sm color-sena-texto  hover:underline" 
                                             id="olvidasteTuPassBtn">¿Olvidaste tu

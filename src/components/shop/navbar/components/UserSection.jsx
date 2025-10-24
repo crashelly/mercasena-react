@@ -3,8 +3,6 @@ import { LoginModal ,RegisterModal} from '@components/modals'
 import { useState } from "react";
 
 export const UserSection = () => {
-    const [showLoginModal, setShowLoginModal] = useState(false);
-
     return (
         <>
             <LoginModal />

@@ -4,7 +4,11 @@ const initialState = {
     categories: [],
     cachedProducts: [],
     allProducts: [],
-    measurements: []
+    measurements: [],
+    targets: {
+        category: null,
+        product: null
+    }
 };
 
 const ProductsSlice = createSlice({
@@ -29,11 +33,20 @@ const ProductsSlice = createSlice({
             state.cachedProducts.push(action.payload)
         },
 
+        setProductsToCache: (state, action) => {
+            state.cachedProducts = action.payload
+        },
         /**
          * agrega las categorias al sistema
          */
         addCategories: (state, action) => {
             state.categories = action.payload
+        },
+        /**
+         * setea las medidas de los productos
+         */
+        setMeasurements: (state, action) => {
+            state.measurements = action.payload
         }
     }
 })
@@ -41,7 +54,9 @@ const ProductsSlice = createSlice({
 export const {
     addAllProducts,
     addCategories,
-    addProductsToCache
+    addProductsToCache,
+    setProductsToCache,
+    setMeasurements
 } = ProductsSlice.actions
 
 export default ProductsSlice.reducer
