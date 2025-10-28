@@ -1,7 +1,8 @@
-import { useEffect, useState,useRef } from "react"
+import { useEffect, useState} from "react"
 import { useSelector, useDispatch } from "react-redux";
 import { MinimalLoader } from "@components/Loaders";
 import { CONFIG } from "@config/app"
+import { addAllProducts } from "@slices/Shop/productsSlice";
 export const SearchBar = () => {
     const [isUserWriting, setIsUserWriting] = useState(false);
     // const [isUserWriting, setIsUserWriting] = useState(false);
@@ -13,6 +14,13 @@ export const SearchBar = () => {
 
 
     const dispatch = useDispatch()
+
+    useEffect(() => {
+        !abierto 
+            ? document.getElementById('btnOpenPopover').click()
+            : console.log("no lo pude cerrar")
+         
+    },[abierto])
     useEffect(() => {
         if (searchText == '') {
             setIsUserWriting(false)
@@ -36,14 +44,14 @@ export const SearchBar = () => {
         fetch(CONFIG.API.URL.endpoints.products.getAll())
             .then(res => res.json())
             .then(res => {
-                // dispatch(addAllProducts(res))
+                dispatch(addAllProducts(res))
                 dispatch(addProducts(res))
                 // setProducts(res)
                 setLoading(false)
             })
     }, [])
 
-    
+
 
     // detecta que se toca afuera y se cierra ese buscador
     // const popoverRef = useRef(null);
@@ -61,13 +69,18 @@ export const SearchBar = () => {
     //         document.removeEventListener("mousedown", manejarClickFuera);
     //     };
     // }, []);
-    // const handleInputClick = () => {
-    //     document.getElementById('btnOpenPopover').click();
+    const handleInputClick = (event) => {
+        document.getElementById('btnOpenPopover').click();
+        setAbierto(true)
+        let contenedor = document.getElementById('productsResult')
+        if (!contenedor.contains(event.target)) {
+            setAbierto(false)
+        }
+        // searchText.length == 0
 
-    //     input.length == 0
-    //         ? document.getElementById('btnOpenPopover').click()
-    //         : null;
-    // }
+        //     ? document.getElementById('btnOpenPopover').click()
+        //     : null;
+    }
 
 
 
@@ -77,9 +90,12 @@ export const SearchBar = () => {
             <div className="order-2 mr-34 md:order-3 hidden md:block w-full md:w-auto mt-0 md:mt-1">
                 <div className="w-full max-w-sm min-w-[200px]">
                     <div className="relative mt-1">
+                        {/* setSearchText(e.target.value) */}
                         <input id="productSearchBar"
-                            onChange={(e) => setSearchText(e.target.value)}
-                            onClick={setAbierto(abierto)}
+                            onChange={(e) => console.log(e.target.value)}
+                            // onClick={ ()=>handleInputClick()}
+                            //  document.getElementById('btnOpenPopover').click()
+                            onClick={ ()=>handleInputClick()}
                             className="w-90 color-sena  hover:boder-4   placeholder:text-white text-white text-sm border border-slate-200 rounded-full pl-4 pr-10 py-3 px-40transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
                             placeholder="Busca tus productos..." />
 
@@ -105,21 +121,22 @@ export const SearchBar = () => {
                                 }
                             </button>
                             {/* parte de los resultados de la busqueda */}
-                            <button className="btn mt-2 h-1 w-1   " id="btnOpenPopover" popoverTarget="productsResult"
+                            <button className="btn mt-2 h-1 w-1 hidden" id="btnOpenPopover" popoverTarget="productsResult"
 
                             >
 
                             </button>
-                            {abierto && (
-                                <div ref={popoverRef} className="dropdown    w-full h-full rounded-box bg-base-100 shadow-sm" popover={"true"} id="productsResult">
-                                    <div className=" px-1 grid grid-cols-4 gap-4  bg-slate-100 " id="resultsforProducxts">
-
-                                    </div>
-                                    <div className=" px-1  " id="errorBannerContainer">
-
-                                    </div>
+                            <div className="dropdown bg-white    w-full h-full rounded-box  shadow-sm" popover={"true"} id="productsResult">
+                                <div className=" px-1 grid grid-cols-4 gap-4  bg-slate-100 " id="resultsforProducxts">
 
                                 </div>
+                                <div className=" px-1  " id="errorBannerContainer">
+
+                                </div>
+
+                            </div>
+                            {abierto && (
+                                <></>
                             )}
 
 

@@ -26,7 +26,7 @@ const ProductCategories = () => {
     return (
         <>
             <div id="carousele-categories"
-                className=" md:overflow-y-hidden color-sena mt-3 p-3 rounded-lg overflow-x-auto flex flex-nowrap md:justify-center justify-start ml-0 mr-2 h-12 w-full bg-green-500 border-box scrollbar-thin scrollbar-thumb-green-700    ">
+                className=" overflow-y-hidden color-sena mt-3 p-3 rounded-lg overflow-x-auto flex flex-nowrap md:justify-center justify-start ml-0 mr-2 h-12 w-full bg-green-500 border-box scrollbar-thin scrollbar-thumb-green-700    ">
                 {/* <!-- <div id="carousele-categories" className="carousel h-7  carousel-horizontal items-align-center   mx-auto w-full rounded-box"> --> */}
                 <Category name={"Todos"} key={"000_cat_todos"} id={0} dispatcher={dispatch} />
                 {

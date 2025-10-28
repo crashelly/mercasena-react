@@ -114,7 +114,7 @@ const ProductCard = ({
     // condfiguracion de los estaods de los proiductos
     let productState = '';
     if (stateID == 6) {
-        productState = <div className="badge badge-warning text-white hover:text-red-400">{state} </div>;
+        productState = <div className="badge mt-4 badge-warning animate-bounce animate-infinite animate-duration-[1300ms] animate-ease-in animate-alternate text-white hover:text-red-400">{state} </div>;
     } else if (stateID == 5) {
         productState = <div className="badge badge-error text-white hover:text-yellow-800 hover:animate-bounce hover:animate-duration-[1400ms] hover:animate-ease-out">{state} </div>;
     }
@@ -146,7 +146,7 @@ const ProductCard = ({
                     <div className="flex justify-between items-start">
                         {/* <!-- Price -->  ${web.addPuntuaction(producto.precio)}   */}
                         <span className="text-lg font-bold text-red-500">$ {price} </span>
-                        <button className="btn btn-success w-20 h-7 text-md text-white hover:btn-primary hover:duration-300 whitespace-nowrap inline-flex rounded-lg ">Mas Info</button>
+                        <button className="btn btn-success w-20 h-7 text-md text-white hover:btn-primary hover:duration-300 whitespace-nowrap inline-flex rounded-lg ">Más Info</button>
                     </div>
                     {/* <!-- Red horizontal line --> */}
                     <div className="border-t border-red-500 my-2"></div>
@@ -222,5 +222,9 @@ const searchSingularMeasurement = (measurements, measurementName) => {
 }
 
 
-
+export {
+    ProductCard,
+    addPuntuaction,
+    searchSingularMeasurement
+}
 export default Products

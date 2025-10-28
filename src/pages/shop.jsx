@@ -1,11 +1,13 @@
 import { Navbar } from "@components/shop/navbar"
 import { ComercialBanner, ProductCategories, Products } from "@features/shop/products/"
 import Footer from "@components/footer"
+import { useEffect,useState } from "react"
 import "./shop.css"
 // import Spline from '@splinetool/react-spline';
 
 
 const Shop = () => {
+    
     return (
         <div className="mainContent">
             <Navbar />
