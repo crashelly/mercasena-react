@@ -48,6 +48,7 @@ const setGlobalUserInfo = (user) => {
         sessionToken :window.localStorage.getItem("sessionToken"),
         email: window.localStorage.getItem("email")
     }
+    console.log(data)
     dispatch(setLoggedUser());
     dispatch(setUserInfo(data));
 

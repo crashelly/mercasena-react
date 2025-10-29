@@ -1,6 +1,7 @@
 // import imgLogin from "@assets/images/imglogin.png"
 import { useNavigate } from "react-router-dom"
 import { useState, useEffect } from "react"
+import { ErrorAlert, SuccessAlert } from "@components/Alerts/"
 import "./loginModal.css"
 import { CONFIG } from "@config/app"
 const LoginModal = () => {
@@ -20,49 +21,90 @@ const LoginModal = () => {
     }
     useEffect(() => {
         if (!shouldLogin) return;
-        alert("xd todo es chiste no?");
 
-        if (isACorrectPassword(password)) {
-            try {
-                fetch(CONFIG.API.URL.endpoints.auth.getLoginUrl(), {
-                    method: "POST",
-                    body: JSON.stringify({
-                        action: "login",
-                        dataObject: {
-                            email: email,
-                            password: password
-                        }
+        const LoginNow = async () => {
+            if (isACorrectPassword(password)) {
+                try {
+                    const response = await fetch(CONFIG.API.URL.endpoints.auth.getLoginUrl(), {
+                        method: "POST",
+                        body: JSON.stringify({
+                            action: "login",
+                            dataObject: {
+                                email: email,
+                                password: password
+                            }
+                        })
                     })
-                })
-                    .then(response => response.json())
-                    .then(response => {
-                        // ! ACA TOCA LUEGO CAMBIAR LA LOGICA Y COMO SE LOGUEA MK
-                        if (response.estado == 'ok') {
-                            console.log("intentado redirigir ")
-                            switch (response.route) {
+
+                    if (!response.ok) {
+                        const res = await response.json();
+                        console.log(res)
+                        throw new Error(res.error)
+                    }
+
+                    // aca conviete la data a json 
+                    const data = await response.json();
+
+                    // ! ACA TOCA LUEGO CAMBIAR LA LOGICA Y COMO SE LOGUEA MK
+                    if (data.estado == 'ok') {
+                        console.log("intentado redirigir ")
+                        let redirectedUri = "/"
+
+                        console.log(data)
+
+                        const selectRoute = async (data) => {
+                            switch (data.route) {
                                 case 'tienda/index.html':
-                                    saveInfo(response)
-                                    navigate("/tienda")
+                                    console.log("guardando info")
+
+                                    console.log("guardadp")
+                                    redirectedUri = "/tienda"
+
+
                                     break;
                                 case 'Inventario/index.html':
-                                    saveInfo(response)
+
                                     break;
 
                                 default:
                                     break;
                             }
-                            // localStorage.setItem("token", response.data.token)
-                            // navigate("/shop")
-                        }
-                    })
-                    .finally(() => setShouldLogin(false))
-            } catch (error) {
 
+                            // redirecciona a la pagina que nesecite
+                        }
+                        saveInfo(data).then(() => {
+                            SuccessAlert("Iniciando sesion ...")
+                            selectRoute(data)
+                            setTimeout(() => {
+                                // console.log(data)
+                                const data = {
+                                    isLoggedIn: true,
+                                    token: window.localStorage.getItem("token"),
+                                    name: window.localStorage.getItem("userName"),
+                                    sessionToken: window.localStorage.getItem("sessionToken"),
+                                    email: window.localStorage.getItem("email")
+                                }
+                                console.log(data)
+                                navigate(redirectedUri)
+                            }, 4000);
+                        })
+
+                    } else {
+                        throw new Error(response.responseJSON.error)
+                    }
+
+                } catch (error) {
+                    ErrorAlert(error)
+                } finally {
+                    setShouldLogin(false)
+                }
+
+            } else {
+                // !TOCA PONER EL SISTEMA DE ALERTAS MK 
             }
 
-        } else {
-            // !TOCA PONER EL SISTEMA DE ALERTAS MK 
         }
+        LoginNow()
 
     }, [shouldLogin])
     return (
@@ -168,10 +210,12 @@ const isACorrectPassword = (password) => {
         return false;
     }
 }
-const saveInfo = (data) => {
+const saveInfo = async (data) => {
     window.localStorage.setItem("token", data.token);
     window.localStorage.setItem("userName", data.name);
     window.localStorage.setItem("sessionToken", data.sessionToken);
     window.localStorage.setItem("email", data.email);
+
+    return true
 }
 export default LoginModal

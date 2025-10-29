@@ -5,6 +5,7 @@ import "./shop.css"
 import { LoginModal, RegisterModal } from '@components/modals'
 
 import { InfoModal } from "@components/modals"
+
 import { Routes, Route, Link } from "react-router-dom"
 // import Spline from '@splinetool/react-spline';
 
