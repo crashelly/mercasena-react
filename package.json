@@ -16,8 +16,9 @@
     "keen-slider": "^6.8.6",
     "owl.carousel": "^2.3.4",
     "react": "^19.1.1",
-    "react-dom": "^19.1.1",
+    "react-dom": "^19.2.0",
     "react-redux": "^9.2.0",
+    "react-router-dom": "^7.9.4",
     "redux": "^5.0.1",
     "swiper": "^12.0.3",
     "tailwindcss-animated": "^2.0.0"

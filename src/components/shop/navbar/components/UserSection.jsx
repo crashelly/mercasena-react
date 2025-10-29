@@ -1,13 +1,25 @@
-import { ShoppingCartIcon } from "./ShoppingCarIcon";
-import { LoginModal, RegisterModal } from '@components/modals'
 import { MobileSearchModalButton } from "@components/shop/navbar/components/MobileProductSearch"
+import { ShoppingCartIcon } from "./ShoppingCarIcon";
+import { useSelector } from "react-redux";
 import { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
+// import { LoginModal, RegisterModal } from '@components/modals'
 
 export const UserSection = () => {
+    const user = useSelector(state => state.user.globalData)
+
+    const handleClickInUserSection = () => {
+        if (user.isLoggedIn) {
+
+        } else {
+            window.history.pushState({}, "", "/login")
+            document.getElementById('LoginModal').showModal()
+        }
+    }
     return (
         <>
-            <LoginModal />
-            <RegisterModal />
+            {/* <LoginModal />
+            <RegisterModal /> */}
             <div className="hidden md:block  order-2 px-30 mr-20"></div>
             {/* { showLoginModal ? <RequestLoginModal /> : null } */}
             {/* //  <!-- Iconos de navegación --> */}
@@ -32,9 +44,10 @@ export const UserSection = () => {
                 </a>
 
                 {/* $('#loginModal').removeclassName('hidden') */}
-                <a id="loginTrigger" popoverTarget="popover-1" onClick={() => document.getElementById('LoginModal').showModal()}
+                <a id="loginTrigger" popoverTarget="popover-1" onClick={() => handleClickInUserSection()}
                     className="mr-2 ml-4 md:ml-0 md:mr-0 hover:underline  md:inline-block no-underline hover:text-black color-sena-texto " href="#">
-                    Iniciar Sesión / Registro
+
+                    <Link to="/login">Iniciar Sesión / Registro </Link>
                 </a>
 
                 {/* borde que separa de los botones */}

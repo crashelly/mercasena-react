@@ -1,9 +1,9 @@
-
+import { useNavigate } from "react-router-dom"
 
 export const RegisterModal = () => {
-    
+    const navigate =  useNavigate()
     return (
-        <dialog id="registerModal" className="modal">
+        <dialog open  id="registerModal" className="modal">
             <div className="modal-box bg-white ">
                 <form method="dialog">
                     {/* if there is a button in form, it will close the modal */}
@@ -84,7 +84,7 @@ export const RegisterModal = () => {
                                         {/* $('#registerModal').addclassName('hidden') */}
                                         <div className="flex justify-between items-center mb-8">¿Ya tienes cuenta?
                                             <a href="#" 
-                                                onClick={() => document.getElementById('registerModal').close()}
+                                                onClick={() => navigate("/login")}
                                                 className="text-sm color-sena-texto hover:underline"
                                             >Iniciar sesion</a>
 

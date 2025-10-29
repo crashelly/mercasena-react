@@ -1,5 +1,7 @@
 import { useState } from 'react'
-import Shop from "./pages/shop"
+import { BrowserRouter } from 'react-router-dom'
+// import Shop from "./pages/shop"
+import AppRoutes from './Routes'
 import './App.css'
 
 function App() {
@@ -7,7 +9,10 @@ function App() {
 
   return (
     <>
-      <Shop/>
+      <BrowserRouter>
+        <AppRoutes />
+      </BrowserRouter>
+      {/* <Shop/> */}
     </>
   )
 }

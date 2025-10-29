@@ -1,10 +1,12 @@
-export const InfoModal = () => {
+
+import Logo from "@assets/Icons/error-icon.gif"
+const InfoModal = () => {
     return (
         <>
         <dialog id="infoModal" className="modal">
-        <div className="modal-box ">
+        <div className="modal-box  bg-white">
           <div className="container inline-flex">
-            <img src="assets/icons/error-icon.gif" className="object-cover overflow-visible  h-50 w-50 ml-7  mr-10 mt-9"
+            <img src={Logo} className="object-cover overflow-visible  h-50 w-50 ml-7  mr-10 mt-9"
               alt=""/>
             <p className="align-center mt-9 text-gray-600 text-2xl " id="text-infoModal">Press ESC key or
               click the button below to close</p>
@@ -22,3 +24,4 @@ export const InfoModal = () => {
         </>
     )
 }
+export default InfoModal

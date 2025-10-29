@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    isLoggedIn: false,
-    user: {
+    globalData: {
+        isLoggedIn: false,
         name : "",
         email : "",
         token : "",

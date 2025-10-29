@@ -2,6 +2,7 @@ import { useState, useEffect } from "react"
 import { CONFIG } from "@config/app"
 import { addProductsToCache, addAllProducts, setMeasurements } from "@slices/Shop/productsSlice";
 import { useSelector, useDispatch } from "react-redux";
+import { useInfoModal } from "@features/shop/products/hooks/useInfoModal";
 const Products = () => {
     const productsGlobalState = useSelector(state => state.products.cachedProducts)
     const measurements = useSelector(state => state.products.measurements)
@@ -36,6 +37,7 @@ const Products = () => {
     useEffect(() => {
         setProducts(productsGlobalState)
     }, [productsGlobalState])
+
 
 
 
@@ -109,10 +111,20 @@ const ProductCard = ({
     singularMeasurement,
     pluralMeasurement
 }) => {
-    const [showInfo, setShowInfo] = useState(false)
-    console.log("renderizando " + name);
-    // condfiguracion de los estaods de los proiductos
+    
     let productState = '';
+    const user = useSelector(state => state.user.globalData)
+    const handleAddProductToShoppingCart = (id) =>{
+        // console.log("presionamos el boton");
+        // alert("xd todo es chiste no?");
+        if (user.isLoggedIn) {
+            
+        }else{
+            useInfoModal("Debe iniciar sesion para agregar productos al carrito de compras")
+        }
+    }
+    // console.log("renderizando " + name);
+    // condfiguracion de los estaods de los proiductos
     if (stateID == 6) {
         productState = <div className="badge mt-4 badge-warning animate-bounce animate-infinite animate-duration-[1300ms] animate-ease-in animate-alternate text-white hover:text-red-400">{state} </div>;
     } else if (stateID == 5) {
@@ -167,9 +179,10 @@ const ProductCard = ({
                     {/*  FIN DEL RENDERIZADO  */}
                 </div>
 
+
                 {/* <!-- Action Buttons --> */}
                 <div className="  mx-auto pb-4 w-8/10 flex ">
-                    <button id="botonSD" onClick={() => console.log("user.requestLogin();")} value="(${producto.id})"
+                    <button id="botonSD" onClick={() => handleAddProductToShoppingCart(id)} value="(${producto.id})"
                         className={
                             stateID == 5
                                 ? " flex-1  cursor-not-allowed bg-gray-600 hover:bg-gray-700  text-white font-medium py-2 px-4 rounded-lg transition-colors flex items-center justify-center gap-2"

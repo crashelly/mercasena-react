@@ -8,6 +8,7 @@ import logo from "@assets/logos/logoSena_21.png"
 import { ProductCard, addPuntuaction, searchSingularMeasurement } from "@features/shop/products/components/Products";
 export const MobileSearchModal = () => {
     const [products, setProducts] = useState([])
+    const [loading, setLoading] = useState(true)
     const AllProducts = useSelector(state => state.products.allProducts)
     const measurements = useSelector(state => state.products.measurements)
     useEffect(() => {
@@ -129,7 +130,7 @@ export const MobileSearchModal = () => {
                                         <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 shrink-0 stroke-current" fill="none" viewBox="0 0 24 24">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
                                         </svg>
-                                        <span class="text-2xl text-white">
+                                        <span className="text-2xl text-white">
                                             No se encontraron productos
                                         </span>
                                     </div>
