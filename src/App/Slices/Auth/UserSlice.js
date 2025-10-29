@@ -6,6 +6,7 @@ const initialState = {
         name : "",
         email : "",
         token : "",
+        sessionToken : "",
         
     },
 };
@@ -19,14 +20,21 @@ const UserSlice = createSlice({
          
          */
         setLoggedUser: (state, action) => {
-            state.isLoggedIn = true
+            state.globalData.isLoggedIn = true
         },
+        setUserInfo : (state, action) => {
+            state.globalData.token = action.payload.token
+            state.globalData.email = action.payload.email
+            state.globalData.name = action.payload.name
+            state.globalData.sessionToken = action.payload.sessionToken
+        }
     }
 
 })
 // exportacion de todas las funcionalidades
 export const {
-    setLoggedUser
+    setLoggedUser,
+    setUserInfo
 } = UserSlice.actions
 
 export default UserSlice.reducer

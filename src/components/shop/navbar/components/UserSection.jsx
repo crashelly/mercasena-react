@@ -1,12 +1,13 @@
 import { MobileSearchModalButton } from "@components/shop/navbar/components/MobileProductSearch"
 import { ShoppingCartIcon } from "./ShoppingCarIcon";
 import { useSelector } from "react-redux";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 // import { LoginModal, RegisterModal } from '@components/modals'
 
 export const UserSection = () => {
     const user = useSelector(state => state.user.globalData)
+    const [userName, setUserName] = useState('');
 
     const handleClickInUserSection = () => {
         if (user.isLoggedIn) {
@@ -16,6 +17,9 @@ export const UserSection = () => {
             document.getElementById('LoginModal').showModal()
         }
     }
+    useEffect(() => {
+        setUserName(user.name)
+    }, [user])
     return (
         <>
             {/* <LoginModal />
@@ -47,7 +51,14 @@ export const UserSection = () => {
                 <a id="loginTrigger" popoverTarget="popover-1" onClick={() => handleClickInUserSection()}
                     className="mr-2 ml-4 md:ml-0 md:mr-0 hover:underline  md:inline-block no-underline hover:text-black color-sena-texto " href="#">
 
-                    <Link to="/login">Iniciar Sesión / Registro </Link>
+                    {
+                        user.isLoggedIn ? (
+                            <a href="#" className="whitespace-nowrap">{user.name}</a>
+                        ) : (
+                            <Link to="/login">Iniciar Sesión / Registro </Link>
+                        )
+                    }
+
                 </a>
 
                 {/* borde que separa de los botones */}
@@ -56,7 +67,7 @@ export const UserSection = () => {
 
                 {/*========================== icono del carrito de compras=================================== */}
                 <ShoppingCartIcon />
-            </div>
+            </div >
 
         </>
     )

@@ -24,6 +24,9 @@ class Config {
                     } ,
                     whatsapp : {
                         get : () => this.mainUrl + 'mercasena.php?action=getWhatsappNumber'
+                    },
+                    auth : {
+                        getLoginUrl : () => this.mainUrl + 'auth.php'
                     }
                 }
             }
