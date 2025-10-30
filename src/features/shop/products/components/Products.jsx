@@ -134,7 +134,7 @@ const ProductCard = ({
     return (
         <>
 
-            <div className="bg-white  rounded-2xl shadow-md overflow-visible hover:scale-110  transform  duration-300 flex flex-col w-full max-w-xs">
+            <div className="bg-white  rounded-2xl shadow-md overflow-visible hover:scale-110  transform  duration-300 flex flex-col w-full max-w-xs  ">
                 {/* <!-- Product Image Container --> */}
                 <div className="relative w-full h-48 bg-gray-100 rounded-t-2xl overflow-hidden">
                     {/* <!-- Gray rounded square --> */}

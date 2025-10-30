@@ -9,7 +9,7 @@ export const Navbar = () => {
     }
     return (
         <>
-            <nav id="header" className="w-full sticky z-30 top-0 py-4 md:py-0 bg-white ">
+            <nav id="header" className="w-full sticky z-40 top-0 py-3 md:py-0 bg-white ">
                 <div className="w-full container  flex flex-nowrap items-center  mt-0 px-2  py-0">
                     <div className="flex items-center pr-0 md:pr-25">
                         {/*md:hidden  */}
