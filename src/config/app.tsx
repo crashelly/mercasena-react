@@ -27,6 +27,9 @@ class Config {
                     },
                     auth : {
                         getLoginUrl : () => this.mainUrl + 'auth.php'
+                    },
+                    user : {
+                        getInfo : () => this.mainUrl + 'user.php?action=getUserInfo'
                     }
                 }
             }

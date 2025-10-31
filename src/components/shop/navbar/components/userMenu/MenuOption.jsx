@@ -1,12 +1,12 @@
-export const MenuOption = ({ icon, description, onClick }) => {
+export const MenuOption = ({ icon, description, onClickAction }) => {
 
 
     return (
 
-        <li className="hover:bg-slate-200 animate-shake animate-once animate-duration-[1300ms] animate-ease-in animate-normal">
-            <div class="flex flex-inline ">
+        <li  onClick={onClickAction}  className="hover:bg-slate-200 animate-shake animate-once animate-duration-[1300ms] animate-ease-in animate-normal">
+            <div className="flex flex-inline ">
                 {icon()}
-                <a onClick={onClick} className="text-md ml-2 font-bold color-sena-texto">
+                <a  className="text-md ml-2 font-bold color-sena-texto">
                     {description}
                 </a>
             </div>
