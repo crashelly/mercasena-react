@@ -10,7 +10,6 @@ const Products = () => {
     const [products, setProducts] = useState([])
     const [isLoading, setLoading] = useState(true)
 
-    console.log(products)
     // consultando a la API
     useEffect(() => {
         fetch(CONFIG.API.URL.endpoints.products.getAll())
@@ -220,16 +219,11 @@ const addPuntuaction = (number) => {
  */
 const searchSingularMeasurement = (measurements, measurementName) => {
 
-    // const measurements = useSelector(state => state.products.measurements);
+    
     let measurement = measurements.filter(object => object.plural.toLowerCase() == measurementName.toLowerCase());
-
-    // console.log(measurement+'tamaño de el buffer d emedidas'+this.measurementsData.length); 
-    //   console.error(`${measurement}`);
     if (measurement.length > 0) {
-        console.log("encontrado " + measurement[0].singular);
         return measurement[0].singular;
     } else {
-        // console.log("No se encontró coincidencia");
         return null;
     }
 }

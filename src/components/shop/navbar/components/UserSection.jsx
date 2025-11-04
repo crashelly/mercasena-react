@@ -13,10 +13,10 @@ export const UserSection = () => {
     const [userName, setUserName] = useState('');
 
     // estados de los modales
-   
+
     // const 
     const dispatch = useDispatch();
-  
+
     useEffect(() => {
         setUserName(user.name)
     }, [user])
@@ -24,88 +24,88 @@ export const UserSection = () => {
         <>
             {/* <LoginModal />
             <RegisterModal /> */}
-            <div className="hidden md:block  order-2 md:px-30 px-0 md:mr-20"></div>
-            {/* { showLoginModal ? <RequestLoginModal /> : null } */}
-            {/* //  <!-- Iconos de navegación --> */}
-            {/* icono de la persona */}
-            <div className="order-3 md:order-3 md:inset-y-0 md:right-0  bg-white ml-1 md:ml-7 md:mr-0 mt-0 flex items-center justify-end md:space-x-4 mr-0" id="nav-content">
-                <div className=" flex   md:pl-0 pl-2  ml-30  mr-0 md:ml-15 md:mr-10">
-
+            <div className="flex flex-inline">
+                
+                {/* { showLoginModal ? <RequestLoginModal /> : null } */}
+                {/* //  <!-- Iconos de navegación --> */}
+                {/* icono de la persona */}
+                <div className="ml-20 md:pl-60 order-3 md:order-3 md:inset-y-0 md:right-0  bg-white  md:ml-7 md:mr-0 mt-0 flex items-center justify-end md:space-x-4 mr-0" id="nav-content">
                     <MobileSearchModalButton />
-                </div>
 
+                    <div id="cuenta_space" className=" mr-0 md:ml-1 flex flex-col">
 
+                        <div className="dropdown dropdown-start">
+                            <div className="dropdown dropdown-end color-sena-texto">
+                                <div className="flex flex-inline">
+                                    {
+                                        // ! CUANDO EL USUARIO ESTA LOGIADO
+                                        user.isLoggedIn ? (
+                                            <>
+                                                <div tabIndex="0" role="button" id="loginTrigger"
+                                                    className="btn bg-white hover:bg-slate-100 border-0 hover:shadow-md shadow-none  color-sena-texto    md:text-md  m-1">
+                                                    {/* icono del usuario */}
+                                                    <a href="index.html" className="hidden hover:animate-bounce hover:animate-ease-in-out md:mr-2 color-sena-texto  md:inline-block no-underline  text-green-600" >
+                                                        <svg className="" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="">
+                                                            <path
+                                                                d="M234-276q51-39 114-61.5T480-360q69 0 132 22.5T726-276q35-41 54.5-93T800-480q0-133-93.5-226.5T480-800q-133 0-226.5 93.5T160-480q0 59 19.5 111t54.5 93Zm246-164q-59 0-99.5-40.5T340-580q0-59 40.5-99.5T480-720q59 0 99.5 40.5T620-580q0 59-40.5 99.5T480-440Zm0 360q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q53 0 100-15.5t86-44.5q-39-29-86-44.5T480-280q-53 0-100 15.5T294-220q39 29 86 44.5T480-160Zm0-360q26 0 43-17t17-43q0-26-17-43t-43-17q-26 0-43 17t-17 43q0 26 17 43t43 17Zm0-60Zm0 360Z" />
+                                                        </svg>
+                                                    </a>
+                                                    <a href="#" className="whitespace-nowrap text-md">{
+                                                        window.innerWidth < 1024
+                                                            ? getShortName(user.name)
+                                                            : user.name
+                                                    }</a>
+                                                </div>
+                                                <ul tabIndex="0" className=" mt-13 dropdown-content menu bg-white rounded-box z-1 w-70 p-2 shadow-sm">
 
+                                                    {
+                                                        <>
+                                                            <MenuOption onClickAction={() => dispatch(setShowMyAccount(true))} icon={menuOptions.account.icon} description={menuOptions.account.description} />
+                                                            <MenuOption onClickAction={() => dispatch(setShowMyOrders(true))} icon={menuOptions.orders.icon} description={menuOptions.orders.description} />
+                                                            <MenuOption onClickAction={() => dispatch(setShowMyBills(true))} icon={menuOptions.bills.icon} description={menuOptions.bills.description} />
+                                                            <MenuOption onClickAction={() => dispatch(setShowLogout(true))} icon={menuOptions.logOut.icon} description={menuOptions.logOut.description} />
+                                                        </>
 
-                <div id="cuenta_space" className=" mr-0 md:ml-1 flex flex-col">
-                    <div className="dropdown dropdown-start">
-                        <div className="dropdown dropdown-end color-sena-texto">
-                            <div className="flex flex-inline">
-                                {
-                                    // ! CUANDO EL USUARIO ESTA LOGIADO
-                                    user.isLoggedIn ? (
-                                        <>
-                                            <div tabIndex="0" role="button" id="loginTrigger"
-                                                className="btn bg-white hover:bg-slate-100 border-0 hover:shadow-md shadow-none  color-sena-texto    md:text-md  m-1">
-                                                {/* icono del usuario */}
-                                                <a href="index.html" className="hidden hover:animate-bounce hover:animate-ease-in-out md:mr-2 color-sena-texto  md:inline-block no-underline  text-green-600" >
+                                                        // modales de las opciones de esos modales
+
+                                                    }
+                                                </ul>
+                                            </>
+                                        ) : (
+                                            <>
+                                                <a href="index.html" className="hidden hover:animate-bounce hover:animate-ease-in-out md:mr-4 color-sena-texto  md:inline-block  no-underline  text-green-600" >
                                                     <svg className="" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="">
                                                         <path
                                                             d="M234-276q51-39 114-61.5T480-360q69 0 132 22.5T726-276q35-41 54.5-93T800-480q0-133-93.5-226.5T480-800q-133 0-226.5 93.5T160-480q0 59 19.5 111t54.5 93Zm246-164q-59 0-99.5-40.5T340-580q0-59 40.5-99.5T480-720q59 0 99.5 40.5T620-580q0 59-40.5 99.5T480-440Zm0 360q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q53 0 100-15.5t86-44.5q-39-29-86-44.5T480-280q-53 0-100 15.5T294-220q39 29 86 44.5T480-160Zm0-360q26 0 43-17t17-43q0-26-17-43t-43-17q-26 0-43 17t-17 43q0 26 17 43t43 17Zm0-60Zm0 360Z" />
                                                     </svg>
                                                 </a>
-                                                <a href="#" className="whitespace-nowrap text-md">{user.name}</a>
-                                            </div>
-                                            <ul tabindex="0" className=" mt-13 dropdown-content menu bg-white rounded-box z-1 w-70 p-2 shadow-sm">
+                                                <a href="#" className="md:whitespace-nowrap">
+                                                    <Link to="/login">Iniciar Sesión / Registro </Link>
+                                                </a>
 
-                                                {
-                                                    <>
-                                                        {/* <MenuOption onClickAction={ ()=>setShowMyAccount(true)} icon={menuOptions.account.icon} description={menuOptions.account.description} /> */}
-
-                                                        <MenuOption onClickAction={()=> dispatch(setShowMyAccount(true))}  icon={menuOptions.account.icon} description={menuOptions.account.description} />
-                                                        <MenuOption onClickAction={()=> dispatch(setShowMyOrders(true))} icon={menuOptions.orders.icon} description={menuOptions.orders.description} />
-                                                        <MenuOption onClickAction={()=> dispatch(setShowMyBills(true))} icon={menuOptions.bills.icon} description={menuOptions.bills.description} />
-                                                        <MenuOption onClickAction={()=> dispatch(setShowLogout(true))} icon={menuOptions.logOut.icon} description={menuOptions.logOut.description} />
-                                                    </>
-
-                                                    // modales de las opciones de esos modales
-                                                   
-                                                }
-                                            </ul>
-                                        </>
-                                    ) : (
-                                        <>
-                                            <a href="index.html" className="hidden hover:animate-bounce hover:animate-ease-in-out md:mr-4 color-sena-texto  md:inline-block  no-underline  text-green-600" >
-                                                <svg className="" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="">
-                                                    <path
-                                                        d="M234-276q51-39 114-61.5T480-360q69 0 132 22.5T726-276q35-41 54.5-93T800-480q0-133-93.5-226.5T480-800q-133 0-226.5 93.5T160-480q0 59 19.5 111t54.5 93Zm246-164q-59 0-99.5-40.5T340-580q0-59 40.5-99.5T480-720q59 0 99.5 40.5T620-580q0 59-40.5 99.5T480-440Zm0 360q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q53 0 100-15.5t86-44.5q-39-29-86-44.5T480-280q-53 0-100 15.5T294-220q39 29 86 44.5T480-160Zm0-360q26 0 43-17t17-43q0-26-17-43t-43-17q-26 0-43 17t-17 43q0 26 17 43t43 17Zm0-60Zm0 360Z" />
-                                                </svg>
-                                            </a>
-                                            <a href="#" className="md:whitespace-nowrap">
-                                                <Link to="/login">Iniciar Sesión / Registro </Link>
-                                            </a>
-
-                                            {/* <div tabindex="0" role="button" id="loginTrigger"
+                                                {/* <div tabindex="0" role="button" id="loginTrigger"
                                         class="btn bg-base-100 hover:bg-base-300  color-sena-texto  text-xs  md:text-md  m-1">Click ⬇️
                                     </div> */}
-                                        </>
-                                    )
-                                }
+                                            </>
+                                        )
+                                    }
+
+                                </div>
 
                             </div>
-
                         </div>
                     </div>
-                </div>
-                {/* $('#loginModal').removeclassName('hidden') */}
+                    {/* $('#loginModal').removeclassName('hidden') */}
 
-                {/* borde que separa de los botones */}
-                <div className="md:ml-3  md:mr-0 border-l-2 hidden  md:block  border-green-500 h-6"></div>
-                {/* aca es el icono de busqueda en movil */}
+                    {/* borde que separa de los botones */}
+                    <div className="md:ml-3  md:mr-0 border-l-2 hidden  md:block  border-green-500 h-6"></div>
+                    {/* aca es el icono de busqueda en movil */}
 
-                {/*========================== icono del carrito de compras=================================== */}
-                <ShoppingCartIcon />
-            </div >
+                    {/*========================== icono del carrito de compras=================================== */}
+                    <ShoppingCartIcon />
+                </div >
+            </div>
+
 
         </>
     )
@@ -171,4 +171,8 @@ const menuOptions = {
             </svg>
         )
     }
+}
+
+const getShortName = (fullName) => {
+    return fullName.split(" ")[0]
 }

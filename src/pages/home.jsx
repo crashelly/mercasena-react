@@ -2,7 +2,7 @@ import { Navbar } from "@components/shop/navbar"
 import { ComercialBanner, ProductCategories, Products } from "@features/shop/products/"
 import { setUserInfo, setLoggedUser } from "@slices/auth/userSlice"
 import { useEffect, useState } from "react"
-import { InfoModal, MyAccountModal } from "@components/modals"
+import { InfoModal, MyAccountModal,UserOrdersModal } from "@components/modals"
 import { setShowMyAccount, setShowMyOrders, setShowMyBills, setShowLogout } from "@slices/shop/appSlice"
 import { useDispatch,useSelector } from "react-redux"
 import Footer from "@components/footer"
@@ -23,9 +23,14 @@ const Home = () => {
     const [showMyBills, setShowMyBills_local] = useState(false)
     const [showLogout, setShowLogout_local] = useState(false)
  
+    console.log(`Estado global de showMyAccount: ${showMyAccountGlobal}`)
+    console.log(`Estado global de showMyOrders: ${showMyOrdersGlobal}`)
+    console.log(`Estado global de showMyBills: ${showMyBillsGlobal}`)
+    console.log(`Estado global de showLogout: ${showLogoutGlobal}`)
     const  dispatch =  useDispatch();
     useEffect(() => {
         setShowMyAccount_local(showMyAccountGlobal)
+        console.log("cambioando estado alvg")
     }, [showMyAccountGlobal])
 
     useEffect(() => {
@@ -68,6 +73,7 @@ const Home = () => {
                     <MyAccountModal onCloseModal={() => dispatch(setShowMyAccount(false))} />
                 )
             }
+            <UserOrdersModal />
 
         </div>
     )

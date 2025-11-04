@@ -27,16 +27,17 @@ const AppSlice = createSlice({
             state.isLogged = action.payload
         },
         setShowMyAccount: (state, action) => {
-            state.showMyAccount = action.payload
+            console.log("SETEANDO EL ESTADO GLOBAL DE MI CUENTA "+action.payload)
+            state.modals.showMyAccount = action.payload
         },
         setShowMyOrders: (state, action) => {
-            state.showMyOrders = action.payload
+            state.modals.showMyOrders = action.payload
         },
         setShowMyBills: (state, action) => {
-            state.showMyBills = action.payload
+            state.modals.showMyBills = action.payload
         },
         setShowLogout: (state, action) => {
-            state.showLogout = action.payload
+            state.modals.showLogout = action.payload
         },
     }
 
@@ -44,7 +45,11 @@ const AppSlice = createSlice({
 // exportacion de todas las funcionalidades
 export const {
     setMobileDevice,
-    setLoggedUser
+    setLoggedUser,
+    setShowMyAccount,
+    setShowMyOrders,
+    setShowMyBills,
+    setShowLogout
 } = AppSlice.actions
 
 export default AppSlice.reducer

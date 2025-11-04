@@ -30,6 +30,10 @@ class Config {
                     },
                     user : {
                         getInfo : () => this.mainUrl + 'user.php?action=getUserInfo'
+                    },
+                    orders : {
+                        get  : ()=> this.mainUrl + 'Order.php?action=getOrdersByUser',
+                        delete : ()=> this.mainUrl + 'Order.php?action=deleteOrder'
                     }
                 }
             }
