@@ -1,8 +1,9 @@
 import { Navbar } from "@components/shop/navbar"
+import  FloatingButtons from '@components/shop/FloatingButtons/whatsapp'
 import { ComercialBanner, ProductCategories, Products } from "@features/shop/products/"
 import { setUserInfo, setLoggedUser } from "@slices/auth/userSlice"
 import { useEffect, useState } from "react"
-import { InfoModal, MyAccountModal,UserOrdersModal } from "@components/modals"
+import { InfoModal, MyAccountModal,UserOrdersModal,BillModal} from "@components/modals"
 import { setShowMyAccount, setShowMyOrders, setShowMyBills, setShowLogout } from "@slices/shop/appSlice"
 import { useDispatch,useSelector } from "react-redux"
 import Footer from "@components/footer"
@@ -73,7 +74,24 @@ const Home = () => {
                     <MyAccountModal onCloseModal={() => dispatch(setShowMyAccount(false))} />
                 )
             }
-            <UserOrdersModal />
+            {/* para los pedidos */}
+            {
+                showMyOrders && (
+                    <UserOrdersModal onCloseModal={() => dispatch(setShowMyOrders(false))} />
+                )
+            }
+            {/* para las facturas */}
+            <BillModal />
+            {/* {
+                // showMyBills && (
+                // )
+                <BillModal onCloseModal={() => dispatch(setShowMyBills(false))} />
+            } */}
+            {/* <UserOrdersModal /> */}
+
+
+
+            <FloatingButtons />
 
         </div>
     )

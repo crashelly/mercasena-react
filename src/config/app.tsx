@@ -34,7 +34,11 @@ class Config {
                     orders : {
                         get  : ()=> this.mainUrl + 'Order.php?action=getOrdersByUser',
                         delete : ()=> this.mainUrl + 'Order.php?action=deleteOrder'
-                    }
+                    },
+                    bills : {
+                        get  : ()=> this.mainUrl + 'Bill.php?action=getMinimalBillInfoForUser'
+                    },
+
                 }
             }
         }

@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import BillCard from "../../../Components/modals/collection/MyBills/BillCard";
 
 const initialState = {
     globalData: {
@@ -7,7 +8,9 @@ const initialState = {
         email: "",
         token: "",
         sessionToken: "",
-        orderDetails: {}
+        orderDetails: {},
+        BillS : [],
+        filteredBills : []
 
     },
 };
@@ -34,6 +37,12 @@ const UserSlice = createSlice({
 
             console.log("guardando la informacion del pedido")
             // console.log(state.globalData.orderDetails)
+        },
+        setBills  : (state , action) => {
+            state.globalData.BillS = action.payload
+        },
+        setFilteredBills  : (state , action) => {
+            state.globalData.filteredBills= action.payload
         }
 
     }

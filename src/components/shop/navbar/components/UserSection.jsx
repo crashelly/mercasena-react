@@ -24,12 +24,12 @@ export const UserSection = () => {
         <>
             {/* <LoginModal />
             <RegisterModal /> */}
-            <div className="flex flex-inline">
+            <div className="flex flex-inline md:justify-end ml-3">
                 
                 {/* { showLoginModal ? <RequestLoginModal /> : null } */}
                 {/* //  <!-- Iconos de navegación --> */}
                 {/* icono de la persona */}
-                <div className="ml-20 md:pl-60 order-3 md:order-3 md:inset-y-0 md:right-0  bg-white  md:ml-7 md:mr-0 mt-0 flex items-center justify-end md:space-x-4 mr-0" id="nav-content">
+                <div className="ml-20 md:pl-60 order-3 md:order-4 md:inset-y-0 md:right-0  bg-white  md:ml-7 md:mr-0 mt-0 flex items-center justify-end md:space-x-4 mr-0" id="nav-content">
                     <MobileSearchModalButton />
 
                     <div id="cuenta_space" className=" mr-0 md:ml-1 flex flex-col">

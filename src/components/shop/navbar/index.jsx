@@ -19,7 +19,7 @@ export const Navbar = () => {
 
                         {/* la verga */}
                     </div>
-                    <div className="md:ml-40 ">
+                    <div className="md:ml-30   ">
                         {/* <SearchBar /> */}
                         <UserSection />
 
