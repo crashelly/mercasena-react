@@ -2,6 +2,10 @@ import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 
 const successAlert = withReactContent(Swal)
+/**
+ * muestra un mensaje de que algo salio bien 
+ * @param {*} msg Mensaje  de ha salido bien una accion
+ */
 const SuccessAlert = (msg) => {
     successAlert.fire({
         icon: "success",

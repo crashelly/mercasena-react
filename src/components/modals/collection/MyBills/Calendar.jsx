@@ -1,19 +1,22 @@
 import { useState, useEffect } from "react"
+import { useSelector ,useDispatch} from "react-redux"
+import { setFilteredBills } from "@slices/Auth/UserSlice"
+import { ErrorAlert } from "@components/Alerts"
+export const CalendarContainer = ({canFilterNow}) => {
 
-export const CalendarContainer = () => {
     return (
         <>
             <div
-                className="mr-20 ml-0 aling-start hover:scale-125 transform duration-300 ease-in-out"
+                className="mr-20 focus:bg-slate-400 bg-slate-200  ml-0 aling-start hover:scale-125 transform duration-300 ease-in-out"
             >
                 <CalendarButton />
                 <div
                     popover="true"
                     id="cally-popover1"
-                    className="dropdown bg-base-100 rounded-box shadow-lg"
+                    className="dropdown bg-black rounded-box shadow-lg"
                     style={{ positionAnchor: "--cally1" }}
                 >
-                    <CalendarBody />
+                    <CalendarBody canFilterNow={canFilterNow} />
                 </div>
             </div>
 
@@ -25,7 +28,7 @@ export const CalendarButton = () => {
         <>
             <button
                 popovertarget="cally-popover1"
-                className="input ml-1 hover:bg-gray-300 rounded-lg"
+                className="input ml-1 bg-slate-200 hover:bg-gray-300 rounded-lg"
                 id="cally1"
                 style={{ anchorName: "--cally1" }}
             >
@@ -55,20 +58,36 @@ export const CalendarButton = () => {
     )
 }
 
-export const CalendarBody = ({bills, onSearch}) => {
+export const CalendarBody = ({canFilterNow}) => {
+    const bills_global =  useSelector(state => state.user.globalData.billS)
+    const [filteredBills, setFilteredBills_local] = useState([])
+    const dispatch = useDispatch()
 
+    useEffect(() => {
+        dispatch(setFilteredBills(filteredBills))
+        console.log("guardando facturas filtradas")
+    }, [filteredBills])
+
+    const  filterNow = (value) => {
+        canFilterNow 
+            ? filterByDate(value,bills_global,setFilteredBills_local)
+            : console.log("no puedo filtrar")
+            
+        
+    }
     return (
         // onChange={(e)=>onSearch(e.target.value,bills)}
         <>
             <calendar-date className="cally"
-                onchange={(e)=>{onSearch(e.target.value,bills)}}>
+                // onchange={(e) =>filterByDate(e.target.value,bills_global,setFilteredBills_local)}>
+                onchange={(e) => filterNow(e.target.value)}>
 
                 <svg fill="#000000" width="15px" height="15px" className="size-4"
                     slot="previous" aria-label="Previous" viewBox="-8.5 0 32 32"
                     version="1.1" xmlns="http://www.w3.org/2000/svg">
-                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round"
-                        stroke-linejoin="round"></g>
+                    <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+                    <g id="SVGRepo_tracerCarrier" strokeLinecap="round"
+                        strokeLinejoin="round"></g>
                     <g id="SVGRepo_iconCarrier">
                         <title>left</title>
                         <path
@@ -80,9 +99,9 @@ export const CalendarBody = ({bills, onSearch}) => {
                 <svg fill="#000000" className="size-4" width="15px" height="15px"
                     aria-label="Next" slot="next" viewBox="-8.5 0 32 32"
                     version="1.1" xmlns="http://www.w3.org/2000/svg">
-                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round"
-                        stroke-linejoin="round"></g>
+                    <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+                    <g id="SVGRepo_tracerCarrier" strokeLinecap="round"
+                        strokeLinejoin="round"></g>
                     <g id="SVGRepo_iconCarrier">
                         <title>right</title>
                         <path
@@ -95,4 +114,23 @@ export const CalendarBody = ({bills, onSearch}) => {
             </calendar-date>
         </>
     )
+}
+
+// us effect de la renderizacion de los bill ya filtrados
+/**
+ * busca facturas por fecha
+ * @param {*} targetDate la fecha pbtenida apartir del calendario
+ * @param {*} bills todas las facturas de la cual filtrar
+ * @param {*} setFilter la funcion que modifica el state de las facturas filtradas
+ */
+const filterByDate = (targetDate,bills,setFilter) => {
+
+    if (bills.length == 0) {
+        ErrorAlert("No hay facturas que filtrar")
+        return null
+    }
+    const data = bills.filter(bill => bill.fechaBusqueda == targetDate)
+    
+    setFilter(data)
+
 }

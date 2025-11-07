@@ -9,7 +9,7 @@ const initialState = {
         token: "",
         sessionToken: "",
         orderDetails: {},
-        BillS : [],
+        bills : [],
         filteredBills : []
 
     },
@@ -39,7 +39,7 @@ const UserSlice = createSlice({
             // console.log(state.globalData.orderDetails)
         },
         setBills  : (state , action) => {
-            state.globalData.BillS = action.payload
+            state.globalData.billS = action.payload
         },
         setFilteredBills  : (state , action) => {
             state.globalData.filteredBills= action.payload
@@ -52,7 +52,9 @@ const UserSlice = createSlice({
 export const {
     setLoggedUser,
     setUserInfo,
-    setOrderDetails
+    setOrderDetails,
+    setBills,
+    setFilteredBills
 } = UserSlice.actions
 
 export default UserSlice.reducer

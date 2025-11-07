@@ -2,6 +2,10 @@ import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 
 const errorAlert = withReactContent(Swal)
+/**
+ * muestra un mensaje de error
+ * @param {*} msg Mensaje  de error
+ */
 const ErrorAlert = (msg) => {
     errorAlert.fire({
         icon: "error",
