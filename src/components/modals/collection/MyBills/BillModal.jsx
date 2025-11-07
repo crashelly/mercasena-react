@@ -10,6 +10,7 @@ const BillModal = ({ onClose }) => {
     const [bills, setBills_local] = useState([])
     const [loadAgain, setLoadAgain] = useState(false)
     const [filterNow, setFilterState] = useState(false)
+    const [showAll, set_showAll] = useState(false)
     const user = useSelector(state => state.user.globalData)
     const dispatch = useDispatch()
 
@@ -72,7 +73,9 @@ const BillModal = ({ onClose }) => {
                             <div className="flex-1 hover:bg-slate-200">
                                 {/* <!-- filtros --> */}
 
-                                <a className="btn btn-ghost hover:bg-slate-200  text-green-600  text-sm md:text-xl">Mis Comprobantes de ventas</a>
+                                <a className="btn btn-ghost hover:bg-slate-200  text-green-600  text-sm md:text-xl">
+                                    Mis Comprobantes de ventas <span className="ml-3"><BillCounter counter={bills.length} /></span>
+                                </a>
                             </div>
                             <div className="flex-2 inline-flex bg-slate-200 hover:bg-slate-200">
                                 {/* <!-- filtros --> */}
@@ -86,7 +89,16 @@ const BillModal = ({ onClose }) => {
                                 />
                                 <CalendarContainer bills={bills} canFilterNow={filterNow} />
                             </div>
-
+                            {/* mostrar todo */}
+                            <div className="flex-3 ml-1 mr-2 justify-end">
+                                <span className=" text-green-600  text-sm md:text-xl text-bold mr-4">Mostrar todo</span>
+                                <input
+                                    type="checkbox"
+                                    onChange={(e) => set_showAll(e.target.checked)}
+                                    checked={showAll}
+                                    className="checkbox border-indigo-600 bg-indigo-500 checked:border-orange-500 checked:bg-orange-400 checked:text-orange-800"
+                                />
+                            </div>
                         </div>
                         {/* conentedo de las facturas */}
                         <div id="BillCardContainers" className="flex mt-3 flex-wrap lg:w-4/5 sm:mx-auto sm:mb-2 -mx-2 p-4">
@@ -124,12 +136,25 @@ const BillModal = ({ onClose }) => {
 
                             {/* si el boton de filtrar no esta encendido muestra todas las facturas */}
                             {
-                                !filterNow && bills.map((bill, index) => {
-                                    return <BillCard key={index + "BillCard_shop"} factura={bill} />
-                                })
+                                !filterNow && !showAll
+
+                                    ? bills.slice(0,
+                                        bills.length >= 10
+                                            ? 10
+                                            : bills.length
+                                    ).map((bill, index) => {
+                                        return <BillCard key={index + "BillCard_shop"} factura={bill} />
+                                    })
+
+                                    : bills.map((bill, index) => {
+                                        return <BillCard key={index + "BillCard_shop"} factura={bill} />
+                                    })
+
+
                             }
 
                         </div>
+
                         {/* aca esta el contenedor de los comprobantes */}
                     </div>
                 </div>
@@ -137,5 +162,16 @@ const BillModal = ({ onClose }) => {
         </>
     )
 }
+
+const BillCounter = ({ counter }) => {
+    return (
+        <span
+            className="font-bold p-1 text-white hover:scale-105 hover:transform hover:duration-300 rounded-lg bg-green-400  hover:bg-green-600 duration-300 transition-colors  hover:text-orange  ease-in-out mr-4 text-center  w-6">
+            {counter}
+        </span>
+
+    )
+}
+
 
 export default BillModal;
