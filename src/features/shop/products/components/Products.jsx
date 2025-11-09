@@ -1,11 +1,21 @@
 import { useState, useEffect } from "react"
 import { CONFIG } from "@config/app"
-import { addProductsToCache, addAllProducts, setMeasurements } from "@slices/Shop/productsSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { useInfoModal } from "@features/shop/products/hooks/useInfoModal";
+import { ShoppingCartMensagge } from "@components/Alerts";
+import { addProductToShoppingCart } from "@slices/Auth/UserSlice"
+import {
+    addProductsToCache,
+    addAllProducts,
+    setMeasurements,
+} from "@slices/Shop/productsSlice";
+
+
 const Products = () => {
     const productsGlobalState = useSelector(state => state.products.cachedProducts)
     const measurements = useSelector(state => state.products.measurements)
+    const user = useSelector(state => state.user.globalData)
+
     const dispatch = useDispatch()
     const [products, setProducts] = useState([])
     const [isLoading, setLoading] = useState(true)
@@ -15,7 +25,7 @@ const Products = () => {
         fetch(CONFIG.API.URL.endpoints.products.getAll())
             .then(res => res.json())
             .then(res => {
-                // dispatch(addAllProducts(res))
+                dispatch(addAllProducts(res))
                 dispatch(addProductsToCache(res))
                 // setProducts(res)
                 setLoading(false)
@@ -71,24 +81,12 @@ const Products = () => {
                                     imageUrl={product.rutaImagen ?? ""}
                                     singularMeasurement={searchSingularMeasurement(measurements, product.medidaVenta) ?? product.medidaVenta}
                                     pluralMeasurement={product.medidaVenta ?? "error no encontrado"}
-
+                                    user={user}
+                                    getAllProducts={() => productsGlobalState}
                                 />
-                                // <div className="relative group cursor-pointer overflow-hidden duration-500 w-64 h-80 bg-zinc-800 text-gray-50 p-5">
-                                //     <div className>
-                                //         <div className="group-hover:scale-110 w-full h-60 bg-blue-400 duration-500" />
-                                //         <div className="absolute w-56 left-0 p-5 -bottom-16 duration-500 group-hover:-translate-y-12">
-                                //             <div className="absolute -z-10 left-0 w-64 h-28 opacity-0 duration-500 group-hover:opacity-50 group-hover:bg-blue-900" />
-                                //             <span className="text-xl font-bold">Hover me!</span>
-                                //             <p className="group-hover:opacity-100 w-56 duration-500 opacity-0">
-                                //                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                //             </p>
-                                //         </div>
-                                //     </div>
-                                // </div>
+
                             ))
-                            // products.map((product) => {
-                            //     console.log(product.nombre)
-                            // })
+
                         }
                     </div>
                 </div>
@@ -108,21 +106,67 @@ const ProductCard = ({
     quantity,
     stock,
     singularMeasurement,
-    pluralMeasurement
+    pluralMeasurement,
+    user,
+    getAllProducts
 }) => {
-    
     let productState = '';
-    const user = useSelector(state => state.user.globalData)
-    const handleAddProductToShoppingCart = (id) =>{
-        // console.log("presionamos el boton");
-        // alert("xd todo es chiste no?");
+    const dispatch = useDispatch();
+    // const products = useSelector(state => state.products.AllProducts)
+    const handleAddProductToShoppingCart = (id) => {
+
         if (user.isLoggedIn) {
-            
-        }else{
+            let shoppingCartNotificationData = {}
+            // console.log(product)
+            // agrega el producto
+            if (!isTheProductInTheCollection({ id: id })) {
+                console.log("no esta  , guardare el producto")
+                console.log(user.shoppingCart)
+                let product = extractProductFromCollection({ id: id })
+                dispatch(addProductToShoppingCart(product))
+
+                shoppingCartNotificationData = {
+                    action: 'added',
+                        mensagge: "se agrego el producto al carrito de compras"
+                }
+            } else {
+                console.log("si esta dentro")
+                shoppingCartNotificationData = {
+                    action: 'rejected',
+                        mensagge: "el producto ya se encuentra en el carrito de compras"
+                }
+            }
+
+            ShoppingCartMensagge(shoppingCartNotificationData)
+        } else {
             useInfoModal("Debe iniciar sesion para agregar productos al carrito de compras")
         }
     }
-    // console.log("renderizando " + name);
+
+    /**
+         * Extrae un producto de la coleccion de elementos previamente almacenada
+         * @param {Object} product The product to search for.
+         * @returns {Object|null} The founded product or null if not found.
+         */
+    const extractProductFromCollection = (product) => {
+        let products = getAllProducts()
+        let foundedProduct = products.find(item => item.id == product.id)
+        if (foundedProduct) {
+            return foundedProduct
+        }
+        return null
+    }
+
+    const isTheProductInTheCollection = (product) => {
+        // // return user.globalData.shoppingCart.some(item => item.id == product.id) ? true : false;
+        // let foundedProduct = user.shoppingCart.find()
+        return user.shoppingCart.some(item => item.id == product.id) ? true : false;
+    }
+
+
+
+
+
     // condfiguracion de los estaods de los proiductos
     if (stateID == 6) {
         productState = <div className="badge mt-4 badge-warning animate-bounce animate-infinite animate-duration-[1300ms] animate-ease-in animate-alternate text-white hover:text-red-400">{state} </div>;
@@ -204,6 +248,10 @@ const ProductCard = ({
     )
 }
 
+
+
+
+
 /**
  * funcion pawra añadir la puntuacion de los precios 
  * 
@@ -219,7 +267,7 @@ const addPuntuaction = (number) => {
  */
 const searchSingularMeasurement = (measurements, measurementName) => {
 
-    
+
     let measurement = measurements.filter(object => object.plural.toLowerCase() == measurementName.toLowerCase());
     if (measurement.length > 0) {
         return measurement[0].singular;
@@ -227,6 +275,7 @@ const searchSingularMeasurement = (measurements, measurementName) => {
         return null;
     }
 }
+
 
 
 export {

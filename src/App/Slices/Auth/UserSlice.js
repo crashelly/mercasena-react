@@ -10,7 +10,8 @@ const initialState = {
         sessionToken: "",
         orderDetails: {},
         bills : [],
-        filteredBills : []
+        filteredBills : [],
+        shoppingCart : []
 
     },
 };
@@ -43,7 +44,18 @@ const UserSlice = createSlice({
         },
         setFilteredBills  : (state , action) => {
             state.globalData.filteredBills= action.payload
-        }
+        },
+
+
+        // ya viene la parte 
+        // ADD 
+        addProductToShoppingCart: (state, action) => {
+            state.globalData.shoppingCart.push(action.payload)
+        },
+
+        dropProductFromShoppingCart: (state, action) => {
+            state.globalData.shoppingCart.push(action.payload)
+        } 
 
     }
 
@@ -54,7 +66,9 @@ export const {
     setUserInfo,
     setOrderDetails,
     setBills,
-    setFilteredBills
+    setFilteredBills,
+    addProductToShoppingCart,
+    dropProductFromShoppingCart
 } = UserSlice.actions
 
 export default UserSlice.reducer

@@ -81,12 +81,12 @@ const Home = () => {
                 )
             }
             {/* para las facturas */}
-            <BillModal />
-            {/* {
-                // showMyBills && (
-                // )
-                <BillModal onCloseModal={() => dispatch(setShowMyBills(false))} />
-            } */}
+            {/* <BillModal /> */}
+            {
+                showMyBills && (
+                    <BillModal onCloseModal={() => dispatch(setShowMyBills(false))} />
+                )
+            }
             {/* <UserOrdersModal /> */}
 
 
